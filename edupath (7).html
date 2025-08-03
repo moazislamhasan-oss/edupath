@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPath</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        /* Enhanced CSS for a modern look */
+        :root {
+            --primary-color: #6c4ab6; /* A deep purple */
+            --secondary-color: #00b3ff; /* A muted gold */
+            --accent-color: #355c7d; /* A dark teal */
+            --text-color: #333;
+            --bg-color: #f7f7f7;
+            --card-bg: #fff;
+            --border-color: #ddd;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .input-section {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .results {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .university-card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            border: 1px solid var(--border-color);
+        }
+
+        .university-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .college-list {
+            margin-left: 20px;
+        }
+
+        .college-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stats {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: var(--accent-color);
+        }
+
+        .university-info {
+            font-style: italic;
+            color: var(--secondary-color);
+            margin-top: 10px;
+        }
+
+        input[type="number"],
+        select {
+            padding: 12px;
+            width: calc(50% - 10px);
+            margin-right: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        button:hover {
+            background-color: var(--primary-color);
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .filter-select {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .payment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background: var(--card-bg);
+            width: 90%;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .personal-info {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .personal-info input {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            width: 100%;
+            font-size: 1em;
+        }
+
+        .apply-button {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+
+        .location-details {
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--bg-color);
+            border-radius: 12px;
+        }
+
+        .map-container {
+            height: 300px;
+            margin: 15px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .university-header {
+            margin-bottom: 20px;
+        }
+
+        .university-header h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .university-header .university-info {
+            font-size: 1.1em;
+        }
+
+        .tuition {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .location-preview {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 12px;
+            background-color: var(--bg-color);
+        }
+
+        .location-preview h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .login-section {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .login-section input {
+            padding: 12px;
+            margin: 10px 0;
+            width: calc(100% - 24px);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .login-section button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .login-section button:hover {
+            background-color: var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>EduPath</h1>
+            <p>Find your future simply</p>
+        </header>
+
+        <section class="login-section" id="loginSection">
+            <h2>Login</h2>
+            <input type="email" placeholder="Email" id="loginEmail">
+            <input type="password" placeholder="Password" id="loginPassword">
+            <button onclick="login()">Login</button>
+            <p>Don't have an account? <a href="#" onclick="showRegistration()">Register</a></p>
+            <button onclick="continueAsGuest()">Continue as Guest</button>
+        </section>
+
+        <section class="registration-section" id="registrationSection" style="display: none;">
+            <h2>Register</h2>
+            <input type="email" placeholder="Email" id="registerEmail">
+            <input type="password" placeholder="Password" id="registerPassword">
+            <button onclick="register()">Register</button>
+            <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+        </section>
+
+        <section class="input-section" id="inputSection" style="display: none;">
+            <label for="totalScore">Enter your total score (out of 100%):</label>
+            <input type="number" id="totalScore" min="0" max="100">
+            <div class="filters">
+                <div class="subscription-option">
+                    <input type="checkbox" id="subscribe" name="subscribe" onclick="updateTotal()">
+                    <label for="subscribe">Subscribe to Premium Access (2$ for 1% discount)</label>
+                </div>
+                <select id="regionFilter" class="filter-select">
+                    <option value="all">All Regions</option>
+                    <option value="cairo">Cairo (19)</option>
+                    <option value="giza">Giza (6)</option>
+                    <option value="alexandria">Alexandria (4)</option>
+                    <option value="newcairo">New Cairo (3)</option>
+                    <option value="banha">Banha (1)</option>
+                    <option value="asyut">Asyut (1)</option>
+                    <option value="mersamatruh">Mersa Matruh (1)</option>
+                    <option value="portsaid">Port Said (1)</option>
+                    <option value="aswan">Aswan (1)</option>
+                    <option value="tanta">Tanta (1)</option>
+                    <option value="damanhur">Damanhur (1)</option>
+                    <option value="damietta">Damietta (1)</option>
+                    <option value="kafrelsheikh">Kafr El Sheikh (1)</option>
+                    <option value="qena">Qena (1)</option>
+                    <option value="zagazig">Zagazig (1)</option>
+                    <option value="minya">Al Minya (1)</option>
+                    <option value="benisuef">Beni Suef (1)</option>
+                    <option value="suez">Suez (1)</option>
+                    <option value="ismailia">Ismailia (1)</option>
+                </select>
+                <select id="sortBy" class="filter-select">
+                    <option value="name">Sort by Name</option>
+                    <option value="score">Sort by Minimum Score</option>
+                    <option value="tuition">Sort by Tuition</option>
+                </select>
+                <select id="tuitionRange" class="filter-select">
+                    <option value="all">All Tuition Ranges</option>
+                    <option value="0-50000">Below 50,000 EGP</option>
+                    <option value="50000-100000">50,000 - 100,000 EGP</option>
+                    <option value="100000+">Above 100,000 EGP</option>
+                </select>
+                <select id="discipline" class="filter-select">
+                    <option value="all">All Disciplines</option>
+                    <option value="engineering">Engineering (45)</option>
+                    <option value="computerscience">Computer Science (36)</option>
+                    <option value="it">IT (33)</option>
+                    <option value="education">Education and Teaching (30)</option>
+                    <option value="pharmacy">Pharmacy (27)</option>
+                    <option value="medicine">Medicine (25)</option>
+                    <option value="pr">PR (24)</option>
+                    <option value="business">Business (22)</option>
+                    <option value="arts">Arts (22)</option>
+                    <option value="technology">Technology (20)</option>
+                    <option value="dentistry">Dentistry (20)</option>
+                    <option value="phys_ed">Physical Education (19)</option>
+                    <option value="marketing">Marketing (19)</option>
+                    <option value="mathematics">Mathematics (18)</option>
+                    <option value="administration">Administration (18)</option>
+                    <option value="health">Health (18)</option>
+                    <option value="management">Management (17)</option>
+                    <option value="physics">Physics (17)</option>
+                    <option value="nursing">Nursing (17)</option>
+                    <option value="agriculture">Agriculture (16)</option>
+                    <option value="law">Law and Jurisprudence (15)</option>
+                    <option value="economics">Economics (14)</option>
+                    <option value="tourism">Tourism (13)</option>
+                    <option value="chemistry">Chemistry (13)</option>
+                    <option value="architecture">Architecture (10)</option>
+                </select>
+            </div>
+            <button onclick="findUniversities()">Search</button>
+        </section>
+
+        <section class="results" id="results">
+            <!-- Results will be displayed here -->
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 EduPath</p>
+    </footer>
+
+    <script>
+        const universities = [
+    {
+        name: "Cairo University",
+        region: "cairo",
+        tuition: 62184,
+        colleges: [
+            {name: "Faculty of Medicine", minScore: 402, tuition: 100451, discipline: "medicine"},
+            {name: "Faculty of Engineering", minScore: 390, tuition: 98433, discipline: "engineering"},
+            {name: "Faculty of Pharmacy", minScore: 395, tuition: 96951, discipline: "pharmacy"},
+            {name: "Faculty of Dentistry", minScore: 398, tuition: 103941, discipline: "dentistry"},
+            {name: "Faculty of Computer Science", minScore: 380, tuition: 85427, discipline: "computerscience"},
+            {name: "Faculty of Science", minScore: 365, tuition: 84606, discipline: "science"}
+        ],
+        info: "One of the 19 universities in Cairo region, established in 1908"
+    },
+    {
+        name: "Ain Shams University",
+        region: "cairo",
+        tuition: 60184,
+        colleges: [
+            {name: "Faculty of Medicine", minScore: 401, tuition: 100000, discipline: "medicine"},
+            {name: "Faculty of Engineering", minScore: 388, tuition: 97000, discipline: "engineering"},
+            {name: "Faculty of Pharmacy", minScore: 394, tuition: 95000, discipline: "pharmacy"},
+            {name: "Faculty of Dentistry", minScore: 397, tuition: 105000, discipline: "dentistry"},
+            {name: "Faculty of Computer Science", minScore: 379, tuition: 84000, discipline: "computerscience"},
+            {name: "Faculty of Science", minScore: 363, tuition: 83000, discipline: "science"}
+        ],
+        info: "Founded in 1950, known for its research programs."
+    },
+    {
+        name: "Alexandria University",
+        region: "alexandria",
+        tuition: 308750,
+        colleges: [
+            {name: "Faculty of Medicine", minScore: 400, tuition: 95000, discipline: "medicine"},
+            {name: "Faculty of Engineering", minScore: 387, tuition: 96000, discipline: "engineering"},
+            {name: "Faculty of Pharmacy", minScore: 393, tuition: 94000, discipline: "pharmacy"},
+            {name: "Faculty of Dentistry", minScore: 396, tuition: 110000, discipline: "dentistry"},
+            {name: "Faculty of Computer Science", minScore: 378, tuition: 82000, discipline: "computerscience"},
+            {name: "Faculty of Science", minScore: 362, tuition: 81000, discipline: "science"}
+        ],
+        info: "One of the 4 universities in Alexandria, average tuition ~308,750 EGP"
+    },
+    {
+        name: "Mansoura University",
+        region: "delta",
+        tuition: 55000,
+        colleges: [
+            {name: "Faculty of Medicine", minScore: 399, tuition: 92000, discipline: "medicine"},
+            {name: "Faculty of Engineering", minScore: 385, tuition: 90000, discipline: "engineering"},
+            {name: "Faculty of Pharmacy", minScore: 392, tuition: 91000, discipline: "pharmacy"},
+            {name: "Faculty of Dentistry", minScore: 395, tuition: 115000, discipline: "dentistry"},
+            {name: "Faculty of Computer Science", minScore: 376, tuition: 80000, discipline: "computerscience"},
+            {name: "Faculty of Science", minScore: 360, tuition: 79000, discipline: "science"}
+        ],
+        info: "Founded in 1972, known for medical studies"
+    },
+    {
+        name: "Assiut University",
+        region: "asyut",
+        tuition: 53000,
+        colleges: [
+            {name: "Faculty of Medicine", minScore: 398, tuition: 91000, discipline: "medicine"},
+            {name: "Faculty of Engineering", minScore: 384, tuition: 88000, discipline: "engineering"},
+            {name: "Faculty of Pharmacy", minScore: 391, tuition: 87000, discipline: "pharmacy"},
+            {name: "Faculty of Dentistry", minScore: 394, tuition: 112000, discipline: "dentistry"},
+            {name: "Faculty of Computer Science", minScore: 375, tuition: 77000, discipline: "computerscience"},
+            {name: "Faculty of Science", minScore: 359, tuition: 76000, discipline: "science"}
+        ],
+        info: "Largest university in Upper Egypt"
+    },
+    {
+        name: "Zagazig University",
+        region: "delta",
+        tuition: 54000,
+        colleges: [
+            {name: "Faculty of Medicine", minScore: 398, tuition: 90000, discipline: "medicine"},
+            {name: "Faculty of Engineering", minScore: 383, tuition: 87000, discipline: "engineering"},
+            {name: "Faculty of Pharmacy", minScore: 390, tuition: 86000, discipline: "pharmacy"},
+            {name: "Faculty of Veterinary Medicine", minScore: 385, tuition: 85000, discipline: "veterinary"},
+            {name: "Faculty of Computer Science", minScore: 374, tuition: 83000, discipline: "computerscience"},
+            {name: "Faculty of Science", minScore: 358, tuition: 82000, discipline: "science"}
+        ],
+        info: "Established in 1974, strong agriculture programs"
+    },
+    {
+        name: "New Cairo University",
+        region: "newcairo",
+        tuition: 62291,
+        colleges: [
+            {name: "Faculty of Engineering", minScore: 388, tuition: 98433, discipline: "engineering"},
+            {name: "Faculty of Computer Science", minScore: 378, tuition: 85427, discipline: "computerscience"},
+            {name: "Faculty of Business", minScore: 360, tuition: 87568, discipline: "business"}
+        ],
+        info: "Modern campus with state-of-the-art facilities"
+    },
+    {
+        name: "British University in Egypt",
+        region: "cairo",
+        tuition: 133689,
+        colleges: [
+            {name: "Faculty of Engineering", minScore: 380, tuition: 133689, discipline: "engineering"},
+            {name: "Faculty of Business", minScore: 360, tuition: 133689, discipline: "business"},
+            {name: "Faculty of Computer Science", minScore: 375, tuition: 133689, discipline: "computerscience"}
+        ],
+        info: "Average tuition: ~133,689 EGP"
+    },
+    {
+        name: "German University in Cairo",
+        region: "newcairo",
+        tuition: 308750,
+        colleges: [
+            {name: "Faculty of Engineering", minScore: 385, tuition: 308750, discipline: "engineering"},
+            {name: "Faculty of Computer Science", minScore: 380, tuition: 308750, discipline: "computerscience"},
+            {name: "Faculty of Management", minScore: 370, tuition: 308750, discipline: "management"}
+        ],
+        info: "Average tuition: ~308,750 EGP"
+    },
+    {
+        name: "Helwan University",
+        region: "cairo",
+        tuition: 87067,
+        colleges: [
+            {name: "Faculty of Engineering", minScore: 382, tuition: 87067, discipline: "engineering"},
+            {name: "Faculty of Fine Arts", minScore: 360, tuition: 87067, discipline: "arts"},
+            {name: "Faculty of Education", minScore: 350, tuition: 87067, discipline: "education"},
+            {name: "Faculty of Commerce", minScore: 355, tuition: 87067, discipline: "business"},
+            {name: "Faculty of Law", minScore: 365, tuition: 87067, discipline: "law"}
+        ],
+        info: "Known for its arts and engineering programs"
+    },
+    {
+        name: "Benha University",
+        region: "banha",
+        tuition: 87067,
+        colleges: [
+            {name: "Faculty of Engineering", minScore: 380, tuition: 87067, discipline: "engineering"},
+            {name: "Faculty of Medicine", minScore: 395, tuition: 87067, discipline: "medicine"},
+            {name: "Faculty of Agriculture", minScore: 340, tuition: 87067, discipline: "agriculture"}
+        ],
+        info: "Located in Banha, Delta region"
+    },
+    {
+        name: "Port Said University",
+        region: "portsaid",
+        tuition: 83661,
+        colleges: [
+            {name: "Faculty of Engineering", minScore: 375, tuition: 83661, discipline: "engineering"},
+            {name: "Faculty of Commerce", minScore: 350, tuition: 83661, discipline: "business"},
+            {name: "Faculty of Education", minScore: 345, tuition: 83661, discipline: "education"}
+        ],
+        info: "Strategic location in Port Said"
+    },
+    {
+        name: "Suez University",
+        region: "suez",
+        tuition: 82785,
+        colleges: [
+            {name: "Faculty of Engineering", minScore: 378, tuition: 82785, discipline: "engineering"},
+            {name: "Faculty of Technology", minScore: 365, tuition: 82785, discipline: "technology"},
+            {name: "Faculty of Industrial Education", minScore: 355, tuition: 82785, discipline: "education"}
+        ],
+        info: "Focuses on industrial and maritime studies"
+    },
+    {
+        name: "Tanta University",
+        region: "tanta",
+        tuition: 81957,
+        colleges: [
+            {name: "Faculty of Medicine", minScore: 397, tuition: 81957, discipline: "medicine"},
+            {name: "Faculty of Engineering", minScore: 382, tuition: 81957, discipline: "engineering"},
+            {name: "Faculty of Science", minScore: 360, tuition: 81957, discipline: "science"}
+        ],
+        info: "Major university in the Delta region"
+    },
+    {
+        name: "Aswan University",
+        region: "aswan",
+        tuition: 88771,
+        colleges: [
+            {name: "Faculty of Engineering", minScore: 375, tuition: 88771, discipline: "engineering"},
+            {name: "Faculty of Tourism", minScore: 340, tuition: 88771, discipline: "tourism"},
+            {name: "Faculty of Arts", minScore: 350, tuition: 88771, discipline: "arts"}
+        ],
+        info: "Located in Upper Egypt, specializes in tourism studies"
+    },
+    {
+        name: "Future University in Egypt",
+        region: "newcairo",
+        tuition: 121670,
+        colleges: [
+            {name: "Faculty of Engineering", minScore: 375, tuition: 121670, discipline: "engineering"},
+            {name: "Faculty of Computer Science", minScore: 370, tuition: 121670, discipline: "computerscience"},
+            {name: "Faculty of Economics", minScore: 360, tuition: 121670, discipline: "economics"},
+            {name: "Faculty of Pharmacy", minScore: 385, tuition: 121670, discipline: "pharmacy"},
+            {name: "Faculty of Business Administration", minScore: 355, tuition: 121670, discipline: "business"}
+        ],
+        info: "Modern private university with international partnerships"
+    },
+    {
+        name: "Al-Azhar University",
+        region: "cairo",
+        tuition: 48668,
+        colleges: [
+            {name: "Faculty of Medicine", minScore: 395, tuition: 48668, discipline: "medicine"},
+            {name: "Faculty of Engineering", minScore: 380, tuition: 48668, discipline: "engineering"},
+            {name: "Faculty of Science", minScore: 350, tuition: 48668, discipline: "science"},
+            {name: "Faculty of Islamic Studies", minScore: 340, tuition: 48668, discipline: "religion"},
+            {name: "Faculty of Languages", minScore: 345, tuition: 48668, discipline: "languages"}
+        ],
+        info: "Historic university with rich cultural heritage"
+    },
+    {
+        name: "American University in Cairo",
+        region: "newcairo",
+        tuition: 308750,
+        colleges: [
+            {name: "School of Sciences and Engineering", minScore: 385, tuition: 308750, discipline: "engineering"},
+            {name: "School of Business", minScore: 375, tuition: 308750, discipline: "business"},
+            {name: "School of Global Affairs", minScore: 370, tuition: 308750, discipline: "management"},
+            {name: "School of Humanities", minScore: 365, tuition: 308750, discipline: "arts"}
+        ],
+        info: "Premier English-language university in Egypt"
+    },
+    {
+        name: "Modern Sciences and Arts University",
+        region: "giza",
+        tuition: 133689,
+        colleges: [
+            {name: "Faculty of Engineering", minScore: 380, tuition: 133689, discipline: "engineering"},
+            {name: "Faculty of Mass Communication", minScore: 360, tuition: 133689, discipline: "pr"},
+            {name: "Faculty of Management", minScore: 365, tuition: 133689, discipline: "management"},
+            {name: "Faculty of Computer Science", minScore: 375, tuition: 133689, discipline: "computerscience"}
+        ],
+        info: "Private university in 6th of October City"
+    },
+    {
+        name: "Misr University for Science & Technology",
+        region: "giza",
+        tuition: 121670,
+        colleges: [
+            {name: "Faculty of Engineering", minScore: 375, tuition: 121670, discipline: "engineering"},
+            {name: "Faculty of Medicine", minScore: 395, tuition: 121670, discipline: "medicine"},
+            {name: "Faculty of Pharmacy", minScore: 385, tuition: 121670, discipline: "pharmacy"}
+        ],
+        info: "Located in 6th of October City"
+    }
+    // Add 30 more universities following this pattern with real data from free-apply.com
+];
+
+// Add advanced filtering functions
+function addAdvancedFilters() {
+    const filters = {
+        scoreRange: {
+            min: 0,
+            max: 100,
+            step: 10
+        },
+        disciplineWeights: {
+            engineering: 1.2,
+            medicine: 1.3,
+            computerscience: 1.1
+            // Add weights for all disciplines
+        },
+        regionPreferences: {
+            cairo: 5,
+            alexandria: 4,
+            giza: 4
+            // Add preferences for all regions
+        }
+    };
+    
+    return {
+        calculateUniversityScore: function(university, totalScore) {
+            let score = 0;
+            university.colleges.forEach(college => {
+                const disciplineWeight = this.disciplineWeights[college.discipline] || 1;
+                score += (totalScore / college.minScore) * disciplineWeight;
+            });
+            score *= (this.regionPreferences[university.region] || 1);
+            return score;
+        },
+        // Add more advanced filtering methods
+    };
+}
+
+// Add visualization functions
+function addDataVisualizations() {
+    return {
+        createTuitionChart: function(universities) {
+            // Implementation for tuition visualization
+        },
+        createScoreDistribution: function(universities) {
+            // Implementation for score distribution
+        },
+        createRegionalComparison: function(universities) {
+            // Implementation for regional comparison
+        }
+    };
+}
+
+// Add data export functions
+function addExportCapabilities() {
+    return {
+        exportToCSV: function(data) {
+            // Implementation for CSV export
+        },
+        exportToPDF: function(data) {
+            // Implementation for PDF export
+        },
+        generateReport: function(university) {
+            // Implementation for detailed report generation
+        }
+    };
+}
+
+// Add comparison features
+function addComparisonFeatures() {
+    return {
+        compareUniversities: function(uni1, uni2) {
+            // Implementation for university comparison
+        },
+        comparePrograms: function(program1, program2) {
+            // Implementation for program comparison
+        },
+        calculateROI: function(university, program) {
+            // Implementation for ROI calculation
+        }
+    };
+}
+
+        function login() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (!email || !password) {
+                alert('Please enter both email and password.');
+                return;
+            }
+
+            // Basic email validation
+            if (!isValidEmail(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Placeholder for actual login functionality
+            alert(`Login successful! Email: ${email}`);
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('inputSection').style.display = 'block';
+        }
+
+        function showRegistration() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('registrationSection').style.display = 'block';
+        }
+
+        function showLogin() {
+            document.getElementById('registrationSection').style.display = 'none';
+            document.getElementById('loginSection').style.display = 'block';
+        }
+
+        function register() {
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+
+            if (!email || !password) {
+                alert('Please enter both email and password.');
+                return;
+            }
+
+            // Basic email validation
+            if (!isValidEmail(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Placeholder for actual registration functionality
+            alert(`Registration successful! Email: ${email}`);
+            document.getElementById('registrationSection').style.display = 'none';
+            document.getElementById('inputSection').style.display = 'block';
+        }
+
+        function continueAsGuest() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('registrationSection').style.display = 'none';
+            document.getElementById('inputSection').style.display = 'block';
+        }
+
+        function isValidEmail(email) {
+            // Basic email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Example: Add location data for all universities (expand this list for all 53 universities)
+        const universityLocations = {
+            "Cairo University": {
+                lat: 30.0259, lng: 31.2122,
+                address: "El-Gamaa St, Giza District, Cairo",
+                landmarks: ["Cairo Tower", "Egyptian Museum"],
+                transportation: ["Metro: Cairo University Station", "Bus: 111, 112"],
+                mainEntrance: "Gate 1, El-Gamaa Street",
+                admissionOffice: "Building 1, Ground Floor"
+            },
+            "Alexandria University": {
+                lat: 31.2001, lng: 29.9187,
+                address: "22 El-Guish Road, Al Azarita, Alexandria",
+                landmarks: ["Alexandria Library", "Qaitbay Citadel"],
+                transportation: ["Tram: Mazloom Station", "Bus: 5, 15"],
+                mainEntrance: "Main Gate, El-Guish Road",
+                admissionOffice: "Admin Building, 2nd Floor"
+            },
+            "Ain Shams University": {
+                lat: 30.0781, lng: 31.2875,
+                address: "Abbassia, Cairo",
+                landmarks: ["Abbassia Square"],
+                transportation: ["Metro: Abbassia Station", "Bus: 50, 51"],
+                mainEntrance: "Abbassia Main Gate",
+                admissionOffice: "Main Admin Building"
+            },
+            "Mansoura University": {
+                lat: 31.0409, lng: 31.3785,
+                address: "El-Gomhouria St, Mansoura, Dakahlia",
+                landmarks: ["Mansoura Stadium"],
+                transportation: ["Bus: 7, 8"],
+                mainEntrance: "El-Gomhouria Main Gate",
+                admissionOffice: "Building 2, First Floor"
+            },
+            // ...add all other universities here...
+        };
+
+        // Payment methods and steps
+        const paymentMethods = {
+            mobilewallet: {
+                steps: [
+                    "Open your mobile wallet app.",
+                    "Select 'Send Money'.",
+                    "Enter the number: 01007287291.",
+                    "Enter the amount shown above (includes 2.5% fee).",
+                    "Complete the transfer.",
+                    "Save the transaction receipt."
+                ]
+            },
+            creditcard: {
+                steps: [
+                    "You will be redirected to the secure payment gateway.",
+                    "Enter your card details.",
+                    "Confirm the payment.",
+                    "Save the transaction receipt."
+                ]
+            },
+            instapay: {
+                steps: [
+                    "Open InstaPay app.",
+                    "Select 'Pay Service'.",
+                    "Enter the university code.",
+                    "Enter the amount shown above (includes 2.5% fee).",
+                    "Complete the transfer.",
+                    "Save the transaction receipt."
+                ]
+            }
+        };
+
+        // Show application modal with form and map
+        function showApplicationModal(university, college) {
+            document.querySelectorAll('.payment-modal').forEach(m => m.remove());
+            const modal = document.createElement('div');
+            modal.className = 'payment-modal';
+            modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close-modal" onclick="this.closest('.payment-modal').remove()">&times;</span>
+            <h3>Apply to ${college.name}</h3>
+            <h4>${university.name}</h4>
+            <div>
+                <strong>Address:</strong> ${universityLocations[university.name].address}<br>
+                <strong>Admission Office:</strong> ${universityLocations[university.name].admissionOffice || ''}<br>
+                <strong>Landmarks:</strong> ${(universityLocations[university.name].landmarks || []).join(', ')}<br>
+                <strong>Transportation:</strong> ${(universityLocations[university.name].transportation || []).join(', ')}
+            </div>
+            <div id="map-${university.name.replace(/\s+/g, '-')}" style="height:200px;margin:10px 0;"></div>
+            <form id="applicationForm" onsubmit="submitApplication(event, '${university.name}', '${college.name}')">
+                <div class="personal-info">
+                    <input type="text" required placeholder="Full Name (Triple)" pattern="^[\\w\\s]{3,}$">
+                    <input type="text" required placeholder="National ID" pattern="^[0-9]{14}$">
+                    <input type="date" required placeholder="Birth Date">
+                    <input type="text" required placeholder="Previous School">
+                </div>
+                <div class="payment-options">
+                    <h4>Application Options</h4>
+                    <div class="payment-option">
+                        <input type="radio" name="applicationOption" value="standard" required>
+                        <label>Standard Application (Free)</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" name="applicationOption" value="premium">
+                        <label>Premium Application (500 EGP - Guaranteed Review)</label>
+                    </div>
+                </div>
+                <div class="payment-methods">
+                    <h4>Payment Method</h4>
+                    <div class="payment-method">
+                        <input type="radio" name="payment" value="mobilewallet" required>
+                        <label>Mobile Wallet (01007287291)</label>
+                    </div>
+                    <div class="payment-method">
+                        <input type="radio" name="payment" value="creditcard">
+                        <label>Credit/Debit Card</label>
+                    </div>
+                    <div class="payment-method">
+                        <input type="radio" name="payment" value="instapay">
+                        <label>InstaPay</label>
+                    </div>
+                </div>
+                <button type="submit" class="apply-button">Continue to Payment</button>
+            </form>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    initializeMap(university);
+}
+
+function initializeMap(university) {
+    const location = universityLocations[university.name];
+    const mapId = `map-${university.name.replace(/\s+/g, '-')}`;
+    setTimeout(() => {
+        if (location && location.lat && location.lng) {
+            const map = L.map(mapId).setView([location.lat, location.lng], 15);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+            L.marker([location.lat, location.lng])
+                .bindPopup(`<b>${university.name}</b><br>${location.address}`)
+                .addTo(map);
+        }
+    }, 100);
+}
+
+function submitApplication(event, universityName, collegeName) {
+    event.preventDefault();
+    const form = event.target;
+    const paymentMethod = form.querySelector('input[name="payment"]:checked').value;
+    const applicationOption = form.querySelector('input[name="applicationOption"]:checked').value;
+    const data = {
+        name: form.querySelector('input[placeholder="Full Name (Triple)"]').value,
+        nationalId: form.querySelector('input[placeholder="National ID"]').value,
+        birthDate: form.querySelector('input[placeholder="Birth Date"]').value,
+        school: form.querySelector('input[placeholder="Previous School"]').value,
+        paymentMethod: paymentMethod,
+        applicationOption: applicationOption
+    };
+    showPaymentInstructions(data, universityName, collegeName);
+}
+
+function showPaymentInstructions(data, universityName, collegeName) {
+    document.querySelectorAll('.payment-modal').forEach(m => m.remove());
+    const university = universities.find(u => u.name === universityName);
+    const college = university.colleges.find(c => c.name === collegeName);
+    let fee = Math.round(college.tuition * 1.025); // 2.5% fee
+    if (data.applicationOption === 'premium') {
+        fee += 500; // Add premium fee
+    }
+
+    const subscribeCheckbox = document.getElementById('subscribe');
+    if (subscribeCheckbox && subscribeCheckbox.checked) {
+        fee = Math.round(fee * 0.99); // Apply 1% discount
+    }
+
+    const payment = paymentMethods[data.paymentMethod];
+    const modal = document.createElement('div');
+    modal.className = 'payment-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close-modal" onclick="this.closest('.payment-modal').remove()">&times;</span>
+            <h3>Payment Instructions</h3>
+            <p><strong>Amount:</strong> ${fee.toLocaleString()} EGP (includes 2.5% service fee${data.applicationOption === 'premium' ? ' and 500 EGP premium fee' : ''}${subscribeCheckbox && subscribeCheckbox.checked ? ' and 1% subscription discount' : ''})</p>
+            <p><strong>Payment Method:</strong> ${data.paymentMethod === 'mobilewallet' ? 'Mobile Wallet' : data.paymentMethod === 'creditcard' ? 'Credit/Debit Card' : 'InstaPay'}</p>
+            ${data.paymentMethod === 'mobilewallet' ? `<p><strong>Wallet Number:</strong> 01007287291</p>` : ''}
+            <div class="steps">
+                <h4>Steps:</h4>
+                <ol>
+                    ${(payment && payment.steps ? payment.steps.map(step => `<li>${step}</li>`).join('') : '')}
+                </ol>
+            </div>
+            <div class="next-steps">
+                <h4>Next Steps:</h4>
+                <ol>
+                    <li>Complete the payment</li>
+                    <li>Save your payment receipt</li>
+                    <li>Visit the admission office at ${universityLocations[universityName].admissionOffice || ''}</li>
+                    <li>Bring your documents and payment receipt</li>
+                </ol>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+function updateTotal() {
+    const subscribeCheckbox = document.getElementById('subscribe');
+    if (subscribeCheckbox && subscribeCheckbox.checked) {
+        alert('You have subscribed to Premium Access for 2$. A 1% discount will be applied to your total fee.');
+    }
+}
+
+// Update university card to include apply button
+function createUniversityCard(university, eligibleColleges) {
+    const card = document.createElement('div');
+    card.className = 'university-card';
+    card.innerHTML = `
+        <div class="university-header">
+            <h2>${university.name}</h2>
+            <div class="university-info">
+                <p>${university.info}</p>
+                <p class="tuition">Tuition: ${university.tuition.toLocaleString()} EGP</p>
+            </div>
+        </div>
+        <div class="college-list">
+            <h3>Available Colleges:</h3>
+            <ul>
+                ${university.colleges.map(college => `
+                    <li>
+                        ${college.name} (Min. Score: ${college.minScore})
+                        <button class="apply-button" onclick="showApplicationModal(universities.find(u=>u.name==='${university.name}'), university.colleges.find(c=>c.name==='${college.name}'))">Apply</button>
+                    </li>
+                `).join('')}
+            </ul>
+        </div>
+        <div class="location-preview">
+            <h4>Location</h4>
+            <p>${universityLocations[university.name].address}</p>
+            <p>Nearest Transportation: ${(universityLocations[university.name].transportation || [])[0]}</p>
+        </div>
+    `;
+    return card;
+}
+
+        function findUniversities() {
+            const totalScore = parseInt(document.getElementById('totalScore').value);
+            const regionFilter = document.getElementById('regionFilter').value;
+            const sortBy = document.getElementById('sortBy').value;
+            const tuitionRange = document.getElementById('tuitionRange').value;
+            const discipline = document.getElementById('discipline').value;
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            if (isNaN(totalScore) || totalScore < 0 || totalScore > 100) {
+                resultsDiv.innerHTML = '<p style="color: red;">Please enter a valid score between 0 and 100</p>';
+                return;
+            }
+
+            // Filter by region
+            let filteredUniversities = universities;
+            if (regionFilter !== 'all') {
+                filteredUniversities = filteredUniversities.filter(uni => uni.region === regionFilter);
+            }
+
+            // Filter by tuition range
+            filteredUniversities = filteredUniversities.filter(uni => {
+                if (tuitionRange === 'all') return true;
+                if (tuitionRange === '0-50000') return uni.tuition < 50000;
+                if (tuitionRange === '50000-100000') return uni.tuition >= 50000 && uni.tuition <= 100000;
+                if (tuitionRange === '100000+') return uni.tuition > 100000;
+                return true;
+            });
+
+            // Filter by discipline
+            if (discipline !== 'all') {
+                filteredUniversities = filteredUniversities.filter(uni =>
+                    uni.colleges.some(college => college.discipline === discipline)
+                );
+            }
+
+            // Sort universities
+            if (sortBy === 'score') {
+                 filteredUniversities.sort((a, b) => {
+                    const aScore = calculateUniversityScore(a, totalScore);
+                    const bScore = calculateUniversityScore(b, totalScore);
+                    return bScore - aScore;
+                });
+            } else if (sortBy === 'tuition') {
+                filteredUniversities.sort((a, b) => a.tuition - b.tuition);
+            } else {
+                filteredUniversities.sort((a, b) => a.name.localeCompare(b.name));
+            }
+
+            let found = false;
+
+            filteredUniversities.forEach(university => {
+                const eligibleColleges = university.colleges.filter(college => {
+                    const minScorePercentage = (college.minScore / 410) * 100;
+                    return totalScore >= minScorePercentage && (discipline === 'all' || college.discipline === discipline);
+                });
+
+                if (eligibleColleges.length > 0) {
+                    found = true;
+                    const universityCard = createUniversityCard(university, eligibleColleges, totalScore);
+                    resultsDiv.appendChild(universityCard);
+                }
+            });
+
+            if (!found) {
+                resultsDiv.innerHTML = '<p>No eligible colleges found for your score.</p>';
+            }
+        }
+
+        // Update university card to include apply button
+        function createUniversityCard(university, eligibleColleges, totalScore) {
+            const card = document.createElement('div');
+            card.className = 'university-card';
+
+            // Calculate eligibility percentage
+            const totalColleges = university.colleges.length;
+            const eligiblePercentage = (eligibleColleges.length / totalColleges) * 100;
+
+            card.innerHTML = `
+                <div class="university-header">
+                    <h2>${university.name}</h2>
+                    <div class="university-info">
+                        <p>${university.info}</p>
+                        <p class="tuition">Tuition: ${university.tuition.toLocaleString()} EGP</p>
+                    </div>
+                </div>
+                <div class="college-list">
+                    <h3>Available Colleges:</h3>
+                    <ul>
+                        ${eligibleColleges.map(college => `
+                            <li>
+                                ${college.name} (Min. Score: ${(college.minScore / 410 * 100).toFixed(2)}%)
+                                <button class="apply-button" onclick="showApplicationModal(universities.find(u=>u.name==='${university.name}'), university.colleges.find(c=>c.name==='${college.name}'))">Apply</button>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `;
+            return card;
+        }
+
+        function calculateUniversityScore(university, totalScore) {
+            let score = 0;
+            university.colleges.forEach(college => {
+                if (totalScore >= (college.minScore / 410) * 100) {
+                    score++;
+                }
+            });
+            return score;
+        }
+        </script>
+</html>

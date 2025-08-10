@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPath - University Finder Egypt</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        /*
+         * EduPath: University Finder App CSS
+         * This stylesheet defines the look and feel of the entire application.
+         * It uses CSS custom properties (variables) for easy theme management.
+         *
+         * @author Gemini
+         * @version 2.0
+         */
+
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+        /* --- Global Variables --- */
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #007bff;
+            --secondary-hover: #0056b3;
+            --accent-color: #ffc107;
+            --text-color: #333333;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e0e0e0;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --success-color: #28a745;
+            --error-color: #dc3545;
+            --header-height: 4rem;
+        }
+
+        /* --- Base & Typography --- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Header & Navigation --- */
+        .header {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 5px var(--shadow-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .logo:hover {
+            color: var(--secondary-hover);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav a,
+        .btn {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .nav a:hover {
+            background-color: var(--light-bg);
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            cursor: pointer;
+            border: 1px solid var(--secondary-color);
+            background-color: transparent;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: var(--primary-color);
+            border: none;
+        }
+
+        .btn-secondary {
+            background-color: var(--border-color);
+            color: var(--text-color);
+            border: none;
+        }
+
+        .nav-auth-buttons .btn {
+            margin-left: 0.5rem;
+        }
+
+        .nav-profile-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* --- Main Content Layout --- */
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        .section {
+            display: none;
+            padding: 2rem 0;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Hero Section --- */
+        #hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1200x600/536878/FFF?text=Discover+Your+Future') no-repeat center center/cover;
+            color: var(--primary-color);
+            text-align: center;
+            padding: 5rem 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+
+        #hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        #hero-section p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* --- Grid and Cards --- */
+        .grid-container {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-location {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-type {
+            font-style: italic;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-actions {
+            text-align: right;
+            margin-top: 1rem;
+        }
+
+        /* --- University Section --- */
+        #universities-section .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            background-color: var(--card-bg);
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        #universities-section .filter-container input,
+        #universities-section .filter-container select {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            flex: 1;
+            max-width: 300px;
+            font-size: 1rem;
+        }
+
+        #universities-section .results-count {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        /* --- Forms & Modals --- */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group.radio-group {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.radio-group label {
+            font-weight: normal;
+            display: inline-block;
+            margin-bottom: 0;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.visible .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .modal-content .step-form {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .modal-content .step-form.active {
+            display: block;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .modal-footer .btn {
+            flex: 1;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--text-color);
+        }
+
+        /* --- University Details Section --- */
+        #university-details-section .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #university-details-section .details-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+
+        #university-details-section .details-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        #university-details-section .details-content h2 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        #university-details-section .details-content p {
+            line-height: 1.6;
+        }
+
+        #university-details-section .details-content .colleges-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        #university-details-section .details-content .college-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        #university-details-section .details-content .college-card:hover {
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        #university-details-section .details-content .college-info {
+            flex: 1;
+        }
+
+        /* --- Profile Section --- */
+        #profile-section .profile-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.5rem;
+        }
+
+        #profile-section .profile-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 4px solid var(--secondary-color);
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        #profile-section .profile-card h2 {
+            margin: 0.5rem 0;
+        }
+
+        /* --- Map Section --- */
+        #map {
+            height: 600px;
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--text-color);
+            color: var(--primary-color);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        /* --- Message Box --- */
+        #message-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 1rem 2rem;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 3000;
+        }
+
+        #message-box.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* --- Mobile Styles & Responsive Design --- */
+
+        /* Hamburger menu for mobile */
+        .hamburger-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .hamburger-menu:hover {
+            transform: scale(1.1);
+        }
+
+        @media (min-width: 768px) {
+            .header .nav-links {
+                display: flex !important;
+            }
+
+            .header .nav-auth-buttons,
+            .header .nav-profile-menu {
+                display: flex !important;
+            }
+
+            #university-details-section .details-grid {
+                grid-template-columns: 2fr 3fr;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .header .container {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .header .logo {
+                order: 1;
+            }
+
+            .hamburger-menu {
+                display: block;
+                order: 2;
+            }
+
+            .header .nav {
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+                display: none;
+                text-align: center;
+                margin-top: 1rem;
+            }
+
+            .header .nav.active {
+                display: flex;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.5rem;
+            }
+
+            .nav-auth-buttons,
+            .nav-profile-menu {
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .filter-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+     * --- Main Header and Navigation ---
+     * This is the sticky navigation bar at the top of the page.
+     * It includes the logo, main navigation links, and authentication buttons.
+     -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo" id="home-link" aria-label="Go to Home Page">EduPath</a>
+            <i class="fas fa-bars hamburger-menu" id="hamburger-menu" aria-label="Open navigation menu"></i>
+            <nav class="nav" id="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#" data-section="about-section">About</a></li>
+                    <li><a href="#" data-section="features-section">Features</a></li>
+                    <li><a href="#" data-section="universities-section">Universities</a></li>
+                    <li><a href="#" data-section="map-section">Map</a></li>
+                    <li><a href="#" data-section="contact-section">Contact</a></li>
+                </ul>
+                <div class="nav-auth-buttons" id="nav-auth-section">
+                    <a href="#" class="btn" id="login-nav-btn">Log In</a>
+                    <a href="#" class="btn btn-primary" id="signup-nav-btn">Sign Up</a>
+                </div>
+                <div class="nav-profile-menu hidden" id="nav-profile-section">
+                    <a href="#" class="btn" data-section="profile-section" aria-label="View user profile">
+                        <i class="fas fa-user-circle"></i> <span id="current-user-name"></span>
+                    </a>
+                    <a href="#" class="btn" data-section="account-settings-section"
+                        aria-label="Go to account settings">Settings</a>
+                    <button class="btn" id="logout-btn">Log Out</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 
+     * --- Main Content Area ---
+     * This section holds all the different pages/sections of the website.
+     * Only one section is visible at a time, controlled by the `active` class.
+     -->
+    <main class="main-content container">
+
+        <!-- Home Page / Hero Section -->
+        <section id="hero-section" class="section active">
+            <h1>Discover Your Future</h1>
+            <p>Find the perfect university in Egypt with ease. Explore programs, compare institutions, and start your
+                academic journey today.</p>
+            <a href="#" class="btn btn-primary" data-section="universities-section">Explore Universities</a>
+        </section>
+
+        <!-- About Section -->
+        <section id="about-section" class="section">
+            <h2 class="section-title">About EduPath</h2>
+            <div class="card">
+                <div class="card-content">
+                    <p>EduPath is your premier guide to higher education in Egypt. We provide comprehensive information
+                        on a wide range of universities, including their programs, admission requirements, and campus
+                        life. Our goal is to empower prospective students with the knowledge they need to make informed
+                        decisions about their academic future. We believe that every student deserves a clear path to
+                        success, and EduPath is here to light the way.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features-section" class="section">
+            <h2 class="section-title">Key Features</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <div class="card-content">
+                        <i class="fas fa-search fa-2x"></i>
+                        <h3 class="card-title">Comprehensive Search</h3>
+                        <p>Easily search and filter universities based on location, programs, and acceptance rates to
+                            find the perfect match.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <i class="fas fa-map-marked-alt fa-2x"></i>
+                        <h3 class="card-title">Interactive Map</h3>
+                        <p>Visualize university locations across Egypt with our interactive map, helping you understand
+                            their geographical distribution.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <i class="fas fa-user-graduate fa-2x"></i>
+                        <h3 class="card-title">Detailed Profiles</h3>
+                        <p>Get in-depth information on each university, including descriptions, available colleges, and
+                            tuition estimates.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Universities List Section -->
+        <section id="universities-section" class="section">
+            <h2 class="section-title">Universities in Egypt</h2>
+            <p id="results-count" class="results-count">Showing 105 universities</p>
+            <div class="filter-container">
+                <input type="text" id="search-input" placeholder="Search by university name...">
+                <select id="type-select">
+                    <option value="">Filter by Type</option>
+                </select>
+                <select id="college-select">
+                    <option value="">Filter by Faculty</option>
+                </select>
+            </div>
+            <div class="grid-container" id="universities-list">
+                <!-- University cards will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- University Details Section -->
+        <section id="university-details-section" class="section">
+            <button class="btn back-btn" id="back-to-universities" aria-label="Back to university list"><i
+                    class="fas fa-arrow-left"></i> Back to Universities</button>
+            <div id="university-details-content">
+                <!-- University details will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Interactive Map Section -->
+        <section id="map-section" class="section">
+            <h2 class="section-title">University Map</h2>
+            <div id="map"></div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact-section" class="section">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="card">
+                <div class="card-content">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="contactName">Name</label>
+                            <input type="text" id="contactName" name="contactName" required
+                                aria-label="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required
+                                aria-label="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" name="contactMessage" rows="5" required
+                                aria-label="Enter your message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                    <p id="contact-message-status"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Profile Section -->
+        <section id="profile-section" class="section">
+            <h2 class="section-title">User Profile</h2>
+            <div class="card profile-card">
+                <img src="https://placehold.co/150x150/e0e0e0/555?text=User" alt="Profile Picture">
+                <h2 id="profile-name">User Name</h2>
+                <p id="profile-email">user@example.com</p>
+                <div class="profile-actions">
+                    <button class="btn btn-primary" data-section="account-settings-section">Account Settings</button>
+                    <!-- This button is deprecated in favor of the full settings page -->
+                    <button class="btn hidden" id="edit-profile-btn">Edit Profile</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Account Settings Section -->
+        <section id="account-settings-section" class="section">
+            <h2 class="section-title">Account Settings</h2>
+            <div class="card">
+                <div class="card-content">
+                    <h3>Edit your Information</h3>
+                    <form id="account-settings-form">
+                        <div class="form-group">
+                            <label for="settingsName">Name</label>
+                            <input type="text" id="settingsName" name="settingsName" required
+                                aria-label="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsEmail">Email</label>
+                            <input type="email" id="settingsEmail" name="settingsEmail" disabled
+                                aria-label="Your email address, not editable">
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsNewPassword">New Password</label>
+                            <input type="password" id="settingsNewPassword" name="settingsNewPassword"
+                                aria-label="Enter new password">
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsConfirmPassword">Confirm New Password</label>
+                            <input type="password" id="settingsConfirmPassword" name="settingsConfirmPassword"
+                                aria-label="Confirm new password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2023 EduPath. All Rights Reserved.</p>
+    </footer>
+
+    <!-- 
+     * --- Modals for Login, Signup, and Application ---
+     * These are hidden overlays that appear on user interaction.
+     * The `visible` class controls their display.
+     -->
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" aria-label="Close login form">&times;</span>
+            <h3>Log In</h3>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required aria-label="Enter your email for login">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required aria-label="Enter your password for login">
+                </div>
+                <button type="submit" class="btn btn-primary">Log In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" aria-label="Close signup form">&times;</span>
+            <h3>Sign Up</h3>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signupName">Name</label>
+                    <input type="text" id="signupName" required aria-label="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required aria-label="Enter your email address">
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required aria-label="Create a password">
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Application Modal -->
+    <div id="apply-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" aria-label="Close application form">&times;</span>
+            <h3 id="apply-modal-title">Apply for [College Name]</h3>
+
+            <form id="apply-form-step-1" class="step-form active">
+                <h4>Personal Information</h4>
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required aria-label="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="birthDate">Birth Date</label>
+                    <input type="date" id="birthDate" name="birthDate" required aria-label="Enter your birth date">
+                </div>
+                <div class="form-group">
+                    <label for="nationalId">National ID</label>
+                    <input type="text" id="nationalId" name="nationalId" required aria-label="Enter your National ID">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" required aria-label="Enter your home address">
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" required aria-label="Enter your phone number">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="next-step-btn">Next</button>
+                </div>
+            </form>
+
+            <form id="apply-form-step-2" class="step-form">
+                <h4>Payment Information</h4>
+                <div class="form-group radio-group">
+                    <input type="radio" id="mobileWallet" name="paymentMethod" value="mobileWallet" checked>
+                    <label for="mobileWallet">Mobile Wallet</label>
+                    <input type="radio" id="creditCard" name="paymentMethod" value="creditCard">
+                    <label for="creditCard">Credit/Debit Card</label>
+                </div>
+
+                <div id="mobile-wallet-fields">
+                    <div class="form-group">
+                        <label for="mobileWalletNumber">Mobile Wallet Number</label>
+                        <input type="tel" id="mobileWalletNumber" name="mobileWalletNumber" required
+                            aria-label="Enter mobile wallet number">
+                    </div>
+                </div>
+
+                <div id="credit-card-fields" class="hidden">
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="text" id="cardNumber" name="cardNumber" required
+                            aria-label="Enter credit card number">
+                    </div>
+                    <div class="form-group">
+                        <label for="cardExpiry">Expiry Date (MM/YY)</label>
+                        <input type="text" id="cardExpiry" name="cardExpiry" required
+                            aria-label="Enter card expiry date">
+                    </div>
+                    <div class="form-group">
+                        <label for="cardCvv">CVV</label>
+                        <input type="text" id="cardCvv" name="cardCvv" required aria-label="Enter card CVV">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn" id="prev-step-btn">Back</button>
+                    <button type="submit" class="btn btn-success">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Message Box for notifications -->
+    <div id="message-box" role="alert" aria-live="polite"></div>
+
+    <!-- Leaflet JS for the map -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Application State and Data ---
+            let isAuthenticated = false;
+            let currentUser = {
+                name: 'Guest',
+                email: 'guest@example.com'
+            };
+            let selectedCollege = null;
+
+            // --- DOM Element References ---
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const mainNav = document.getElementById('main-nav');
+            const sections = document.querySelectorAll('.section');
+            const universitiesList = document.getElementById('universities-list');
+            const collegeSelect = document.getElementById('college-select');
+            const typeSelect = document.getElementById('type-select');
+            const searchInput = document.getElementById('search-input');
+            const resultsCount = document.getElementById('results-count');
+            const universityDetailsContent = document.getElementById('university-details-content');
+            const mapContainer = document.getElementById('map');
+            const contactForm = document.getElementById('contact-form');
+
+            // Modals
+            const loginModal = document.getElementById('login-modal');
+            const signupModal = document.getElementById('signup-modal');
+            const applyModal = document.getElementById('apply-modal');
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            const messageBox = document.getElementById('message-box');
+
+            // Apply Modal Elements
+            const applyModalTitle = document.getElementById('apply-modal-title');
+            const applyFormStep1 = document.getElementById('apply-form-step-1');
+            const applyFormStep2 = document.getElementById('apply-form-step-2');
+            const nextStepBtn = document.getElementById('next-step-btn');
+            const prevStepBtn = document.getElementById('prev-step-btn');
+            const mobileWalletFields = document.getElementById('mobile-wallet-fields');
+            const creditCardFields = document.getElementById('credit-card-fields');
+
+            // Profile & Settings
+            const navAuthSection = document.getElementById('nav-auth-section');
+            const navProfileSection = document.getElementById('nav-profile-section');
+            const currentUserNameSpan = document.getElementById('current-user-name');
+            const profileName = document.getElementById('profile-name');
+            const profileEmail = document.getElementById('profile-email');
+            const settingsNameInput = document.getElementById('settingsName');
+            const settingsEmailInput = document.getElementById('settingsEmail');
+            const settingsNewPasswordInput = document.getElementById('settingsNewPassword');
+            const settingsConfirmPasswordInput = document.getElementById('settingsConfirmPassword');
+            const accountSettingsForm = document.getElementById('account-settings-form');
+
+            // --- Data: 105 Universities in Egypt ---
+            const universities = [
+                { id: 1, name: 'Cairo University', location: 'Giza', description: 'One of Egypt\'s oldest and most prestigious universities, known for its extensive range of faculties and research facilities. Cairo University is a hub of academic excellence and cultural heritage, attracting students from all over the world. Its campus is a vibrant community with a rich history.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=Cairo+University', coordinates: [30.0275, 31.2096], type: 'Public', colleges: [{ name: 'Engineering', totalScorePercent: '95%', tuition: 'EGP 10,000 / year' }, { name: 'Medicine', totalScorePercent: '98%', tuition: 'EGP 15,000 / year' }, { name: 'Commerce', totalScorePercent: '80%', tuition: 'EGP 5,000 / year' }, { name: 'Law', totalScorePercent: '82%', tuition: 'EGP 6,000 / year' }, { name: 'Arts', totalScorePercent: '78%', tuition: 'EGP 4,500 / year' }, { name: 'Economics and Political Science', totalScorePercent: '92%', tuition: 'EGP 7,500 / year' }] },
+                { id: 2, name: 'Ain Shams University', location: 'Cairo', description: 'A large public university with a strong reputation in medical and engineering fields. Ain Shams University is a leading institution in applied sciences and has a bustling campus environment. Its commitment to innovation and community service makes it a top choice for students.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=Ain+Shams+University', coordinates: [30.0754, 31.2858], type: 'Public', colleges: [{ name: 'Medicine', totalScorePercent: '97%', tuition: 'EGP 12,000 / year' }, { name: 'Engineering', totalScorePercent: '94%', tuition: 'EGP 11,000 / year' }, { name: 'Pharmacy', totalScorePercent: '96%', tuition: 'EGP 13,000 / year' }, { name: 'Science', totalScorePercent: '88%', tuition: 'EGP 6,000 / year' }, { name: 'Alsun', totalScorePercent: '85%', tuition: 'EGP 7,500 / year' }] },
+                { id: 3, name: 'Alexandria University', location: 'Alexandria', description: 'A prominent university located on the Mediterranean coast. Alexandria University is celebrated for its diverse academic programs and strong connection to the city\'s cultural and historical heritage. It provides a unique educational experience by the sea.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=Alexandria+University', coordinates: [31.2001, 29.9187], type: 'Public', colleges: [{ name: 'Engineering', totalScorePercent: '93%', tuition: 'EGP 11,500 / year' }, { name: 'Medicine', totalScorePercent: '96%', tuition: 'EGP 14,000 / year' }, { name: 'Science', totalScorePercent: '89%', tuition: 'EGP 7,000 / year' }, { name: 'Arts', totalScorePercent: '80%', tuition: 'EGP 5,500 / year' }, { name: 'Fine Arts', totalScorePercent: '79%', tuition: 'EGP 6,500 / year' }] },
+                { id: 4, name: 'Helwan University', location: 'Helwan', description: 'Known for its focus on arts, applied sciences, and technology, Helwan University offers a wide array of creative and technical programs. It is particularly recognized for its vibrant artistic community and state-of-the-art labs.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=Helwan+University', coordinates: [29.8450, 31.3323], type: 'Public', colleges: [{ name: 'Applied Arts', totalScorePercent: '85%', tuition: 'EGP 9,000 / year' }, { name: 'Education', totalScorePercent: '78%', tuition: 'EGP 4,000 / year' }, { name: 'Commerce', totalScorePercent: '75%', tuition: 'EGP 3,500 / year' }, { name: 'Physical Education', totalScorePercent: '70%', tuition: 'EGP 3,000 / year' }, { name: 'Fine Arts', totalScorePercent: '81%', tuition: 'EGP 7,000 / year' }] },
+                { id: 5, name: 'American University in Cairo (AUC)', location: 'New Cairo', description: 'A highly-regarded private, English-language university offering a liberal arts curriculum. AUC is known for its world-class faculty, modern campus, and diverse student body, fostering a global perspective in all its graduates.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=AUC', coordinates: [29.9880, 31.4397], type: 'Private', colleges: [{ name: 'Business', totalScorePercent: '90%', tuition: 'EGP 250,000 / year' }, { name: 'Engineering', totalScorePercent: '92%', tuition: 'EGP 280,000 / year' }, { name: 'Humanities', totalScorePercent: '85%', tuition: 'EGP 220,000 / year' }, { name: 'Social Sciences', totalScorePercent: '87%', tuition: 'EGP 230,000 / year' }] },
+                { id: 6, name: 'The German University in Cairo (GUC)', location: 'New Cairo', description: 'A private German university known for its rigorous programs and strong ties to German academic standards. GUC provides a unique bicultural educational experience, with a focus on engineering, technology, and applied sciences.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=GUC', coordinates: [29.9703, 31.4239], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '93%', tuition: 'EGP 150,000 / year' }, { name: 'Pharmacy', totalScorePercent: '94%', tuition: 'EGP 160,000 / year' }, { name: 'Management', totalScorePercent: '88%', tuition: 'EGP 140,000 / year' }] },
+                { id: 7, name: 'Future University in Egypt (FUE)', location: 'New Cairo', description: 'A private university offering modern programs and excellent facilities. FUE is committed to providing a high-quality education that prepares students for the future job market through practical and innovative curricula.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=FUE', coordinates: [30.0125, 31.4429], type: 'Private', colleges: [{ name: 'Pharmaceutical Sciences', totalScorePercent: '91%', tuition: 'EGP 110,000 / year' }, { name: 'Engineering', totalScorePercent: '88%', tuition: 'EGP 95,000 / year' }, { name: 'Computer Science', totalScorePercent: '87%', tuition: 'EGP 85,000 / year' }, { name: 'Economics & Political Science', totalScorePercent: '82%', tuition: 'EGP 70,000 / year' }] },
+                { id: 8, name: 'British University in Egypt (BUE)', location: 'El Sherouk', description: 'A British-style university providing high-quality education with programs validated by UK universities. BUE focuses on academic rigor and a supportive learning environment, preparing students for international careers.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=BUE', coordinates: [30.1332, 31.5979], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '90%', tuition: 'EGP 140,000 / year' }, { name: 'Business', totalScorePercent: '85%', tuition: 'EGP 120,000 / year' }, { name: 'Pharmacy', totalScorePercent: '89%', tuition: 'EGP 135,000 / year' }, { name: 'Dentistry', totalScorePercent: '92%', tuition: 'EGP 160,000 / year' }] },
+                { id: 9, name: 'Mansoura University', location: 'Mansoura', description: 'A large Egyptian public university in the Nile Delta with a strong reputation in medicine and scientific research. Mansoura University is a major regional educational hub.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=Mansoura+University', coordinates: [31.0410, 31.3802], type: 'Public', colleges: [{ name: 'Medicine', totalScorePercent: '97%', tuition: 'EGP 10,000 / year' }, { name: 'Dentistry', totalScorePercent: '96%', tuition: 'EGP 11,000 / year' }, { name: 'Pharmacy', totalScorePercent: '95%', tuition: 'EGP 12,000 / year' }] },
+                { id: 10, name: 'Suez Canal University', location: 'Ismailia', description: 'A university serving the Suez Canal region, focusing on fields vital to the area\'s economic development. It is known for its practical approach to education and research.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=Suez+Canal+University', coordinates: [30.6045, 32.2721], type: 'Public', colleges: [{ name: 'Engineering', totalScorePercent: '91%', tuition: 'EGP 9,000 / year' }, { name: 'Pharmacy', totalScorePercent: '94%', tuition: 'EGP 10,500 / year' }, { name: 'Commerce', totalScorePercent: '79%', tuition: 'EGP 4,500 / year' }] },
+                { id: 11, name: 'Minia University', location: 'Minia', description: 'A public university in Upper Egypt with a wide range of academic programs.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=Minia+University', coordinates: [28.0933, 30.7513], type: 'Public', colleges: [{ name: 'Medicine', totalScorePercent: '96%', tuition: 'EGP 9,500 / year' }, { name: 'Arts', totalScorePercent: '77%', tuition: 'EGP 3,500 / year' }] },
+                { id: 12, name: 'Tanta University', location: 'Tanta', description: 'Located in the heart of the Nile Delta, Tanta University is a major public institution.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=Tanta+University', coordinates: [30.7937, 30.9996], type: 'Public', colleges: [{ name: 'Medicine', totalScorePercent: '97%', tuition: 'EGP 10,500 / year' }, { name: 'Engineering', totalScorePercent: '92%', tuition: 'EGP 9,500 / year' }] },
+                { id: 13, name: 'Zagazig University', location: 'Zagazig', description: 'A public university known for its strong programs in agriculture and veterinary medicine.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=Zagazig+University', coordinates: [30.5900, 31.5039], type: 'Public', colleges: [{ name: 'Veterinary Medicine', totalScorePercent: '94%', tuition: 'EGP 8,000 / year' }, { name: 'Agriculture', totalScorePercent: '85%', tuition: 'EGP 6,000 / year' }] },
+                { id: 14, name: 'Assiut University', location: 'Assiut', description: 'One of the oldest universities in Upper Egypt, with a focus on scientific research.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=Assiut+University', coordinates: [27.1812, 31.1893], type: 'Public', colleges: [{ name: 'Medicine', totalScorePercent: '97%', tuition: 'EGP 10,000 / year' }, { name: 'Science', totalScorePercent: '88%', tuition: 'EGP 6,000 / year' }] },
+                { id: 15, name: 'South Valley University', location: 'Qena', description: 'Serving the southern region of Egypt with a variety of faculties.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=South+Valley+University', coordinates: [26.1557, 32.7214], type: 'Public', colleges: [{ name: 'Medicine', totalScorePercent: '96%', tuition: 'EGP 9,000 / year' }, { name: 'Engineering', totalScorePercent: '90%', tuition: 'EGP 8,500 / year' }] },
+                { id: 16, name: 'Benha University', location: 'Benha', description: 'A public university in the Nile Delta, known for its strong community ties.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=Benha+University', coordinates: [30.4616, 31.1869], type: 'Public', colleges: [{ name: 'Engineering', totalScorePercent: '93%', tuition: 'EGP 9,000 / year' }, { name: 'Medicine', totalScorePercent: '96%', tuition: 'EGP 10,500 / year' }] },
+                { id: 17, name: 'Sohag University', location: 'Sohag', description: 'A public university in Upper Egypt with a growing reputation.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=Sohag+University', coordinates: [26.5492, 31.6961], type: 'Public', colleges: [{ name: 'Medicine', totalScorePercent: '96%', tuition: 'EGP 9,000 / year' }, { name: 'Commerce', totalScorePercent: '78%', tuition: 'EGP 4,000 / year' }] },
+                { id: 18, name: 'Damanhour University', location: 'Damanhour', description: 'A public university in the Beheira Governorate.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=Damanhour+University', coordinates: [31.0425, 30.4674], type: 'Public', colleges: [{ name: 'Pharmacy', totalScorePercent: '94%', tuition: 'EGP 10,000 / year' }, { name: 'Arts', totalScorePercent: '79%', tuition: 'EGP 3,500 / year' }] },
+                { id: 19, name: 'Port Said University', location: 'Port Said', description: 'A university located on the Suez Canal, with a focus on engineering.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=Port+Said+University', coordinates: [31.2588, 32.3023], type: 'Public', colleges: [{ name: 'Engineering', totalScorePercent: '92%', tuition: 'EGP 9,500 / year' }, { name: 'Science', totalScorePercent: '87%', tuition: 'EGP 5,500 / year' }] },
+                { id: 20, name: 'Kafr El Sheikh University', location: 'Kafr El Sheikh', description: 'A public university in the northern Nile Delta.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=Kafr+El+Sheikh+University', coordinates: [31.1189, 30.9405], type: 'Public', colleges: [{ name: 'Veterinary Medicine', totalScorePercent: '93%', tuition: 'EGP 8,500 / year' }, { name: 'Fisheries', totalScorePercent: '88%', tuition: 'EGP 7,000 / year' }] },
+                { id: 21, name: 'Luxor University', location: 'Luxor', description: 'Focuses on tourism and hospitality management.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=Luxor+University', coordinates: [25.6872, 32.6396], type: 'Public', colleges: [{ name: 'Tourism and Hotels', totalScorePercent: '75%', tuition: 'EGP 4,000 / year' }, { name: 'Arts', totalScorePercent: '78%', tuition: 'EGP 3,000 / year' }] },
+                { id: 22, name: 'Fayoum University', location: 'Fayoum', description: 'A public university located in the Fayoum Oasis.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=Fayoum+University', coordinates: [29.3090, 30.8407], type: 'Public', colleges: [{ name: 'Engineering', totalScorePercent: '91%', tuition: 'EGP 8,500 / year' }, { name: 'Pharmacy', totalScorePercent: '94%', tuition: 'EGP 10,000 / year' }] },
+                { id: 23, name: 'Suez University', location: 'Suez', description: 'Known for its focus on industrial and petroleum engineering.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=Suez+University', coordinates: [29.9880, 32.5350], type: 'Public', colleges: [{ name: 'Petroleum Engineering', totalScorePercent: '95%', tuition: 'EGP 15,000 / year' }, { name: 'Engineering', totalScorePercent: '92%', tuition: 'EGP 10,000 / year' }] },
+                { id: 24, name: 'Sadat City University', location: 'Sadat City', description: 'A young public university with a focus on technology and industry.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=Sadat+City+University', coordinates: [30.4075, 30.5284], type: 'Public', colleges: [{ name: 'Biotechnology', totalScorePercent: '88%', tuition: 'EGP 7,500 / year' }, { name: 'Commerce', totalScorePercent: '75%', tuition: 'EGP 4,000 / year' }] },
+                { id: 25, name: 'New Valley University', location: 'Kharga', description: 'Located in the Western Desert, serving a unique region.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=New+Valley+University', coordinates: [25.4347, 30.5518], type: 'Public', colleges: [{ name: 'Agriculture', totalScorePercent: '80%', tuition: 'EGP 5,000 / year' }, { name: 'Veterinary Medicine', totalScorePercent: '91%', tuition: 'EGP 8,000 / year' }] },
+                { id: 26, name: 'Mansoura National University', location: 'Mansoura', description: 'A national university with a focus on advanced technology and research.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=Mansoura+National+University', coordinates: [31.0410, 31.3802], type: 'National', colleges: [{ name: 'Medicine', totalScorePercent: '98%', tuition: 'EGP 80,000 / year' }, { name: 'Engineering', totalScorePercent: '95%', tuition: 'EGP 60,000 / year' }] },
+                { id: 27, name: 'Galala University', location: 'Galala', description: 'A private university with state-of-the-art facilities and international partnerships.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=Galala+University', coordinates: [29.6253, 32.5522], type: 'National', colleges: [{ name: 'Engineering', totalScorePercent: '90%', tuition: 'EGP 90,000 / year' }, { name: 'Architecture', totalScorePercent: '88%', tuition: 'EGP 85,000 / year' }] },
+                { id: 28, name: 'New Mansoura University', location: 'New Mansoura', description: 'A modern national university offering a wide range of programs.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=New+Mansoura+University', coordinates: [31.0440, 31.3820], type: 'National', colleges: [{ name: 'Medicine', totalScorePercent: '97%', tuition: 'EGP 85,000 / year' }, { name: 'Dentistry', totalScorePercent: '96%', tuition: 'EGP 90,000 / year' }] },
+                { id: 29, name: 'National University of Egypt', location: 'Cairo', description: 'A new national university with a vision to be a leader in technology.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=National+University+of+Egypt', coordinates: [30.0444, 31.2357], type: 'National', colleges: [{ name: 'Computer Science', totalScorePercent: '92%', tuition: 'EGP 70,000 / year' }, { name: 'Artificial Intelligence', totalScorePercent: '93%', tuition: 'EGP 75,000 / year' }] },
+                { id: 30, name: 'Nile University', location: 'Sheikh Zayed City', description: 'A private non-profit research university focusing on technology and business.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=Nile+University', coordinates: [30.0163, 30.9324], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '91%', tuition: 'EGP 130,000 / year' }, { name: 'Business Administration', totalScorePercent: '86%', tuition: 'EGP 110,000 / year' }] },
+                { id: 31, name: 'Misr International University (MIU)', location: 'Obour City', description: 'A private university offering diverse programs and an international environment.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=MIU', coordinates: [30.2227, 31.3842], type: 'Private', colleges: [{ name: 'Dentistry', totalScorePercent: '94%', tuition: 'EGP 150,000 / year' }, { name: 'Pharmacy', totalScorePercent: '92%', tuition: 'EGP 130,000 / year' }] },
+                { id: 32, name: 'Modern Sciences and Arts University (MSA)', location: '6th of October City', description: 'Known for its collaboration with British universities.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=MSA', coordinates: [29.9723, 30.9632], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '89%', tuition: 'EGP 115,000 / year' }, { name: 'Pharmacy', totalScorePercent: '91%', tuition: 'EGP 125,000 / year' }] },
+                { id: 33, name: 'October University for Modern Sciences and Arts (MUST)', location: '6th of October City', description: 'A large private university offering a broad spectrum of programs.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=MUST', coordinates: [29.9824, 30.9691], type: 'Private', colleges: [{ name: 'Medicine', totalScorePercent: '96%', tuition: 'EGP 180,000 / year' }, { name: 'Pharmacy', totalScorePercent: '94%', tuition: 'EGP 160,000 / year' }] },
+                { id: 34, name: 'Misr University for Science & Technology (MUST)', location: '6th of October City', description: 'A large private university with a wide range of faculties and facilities.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=MUST', coordinates: [29.9824, 30.9691], type: 'Private', colleges: [{ name: 'Medicine', totalScorePercent: '96%', tuition: 'EGP 180,000 / year' }, { name: 'Pharmacy', totalScorePercent: '94%', tuition: 'EGP 160,000 / year' }] },
+                { id: 35, name: 'Pharos University in Alexandria', location: 'Alexandria', description: 'A private university with a strong focus on practical and applied education.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=Pharos+University', coordinates: [31.2185, 29.9238], type: 'Private', colleges: [{ name: 'Pharmacy', totalScorePercent: '92%', tuition: 'EGP 105,000 / year' }, { name: 'Engineering', totalScorePercent: '88%', tuition: 'EGP 85,000 / year' }] },
+                { id: 36, name: 'Sina University', location: 'El Arish', description: 'A private university in Sinai, focusing on developing the region.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=Sina+University', coordinates: [31.1340, 33.8037], type: 'Private', colleges: [{ name: 'Dentistry', totalScorePercent: '93%', tuition: 'EGP 130,000 / year' }, { name: 'Pharmacy', totalScorePercent: '90%', tuition: 'EGP 110,000 / year' }] },
+                { id: 37, name: 'Ahram Canadian University (ACU)', location: '6th of October City', description: 'A private university with strong Canadian partnerships.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=ACU', coordinates: [29.9806, 30.9678], type: 'Private', colleges: [{ name: 'Pharmacy', totalScorePercent: '90%', tuition: 'EGP 105,000 / year' }, { name: 'Business Administration', totalScorePercent: '80%', tuition: 'EGP 70,000 / year' }] },
+                { id: 38, name: 'Delta University for Science and Technology', location: 'Mansoura', description: 'A private university located in the Nile Delta.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=Delta+University', coordinates: [31.0503, 31.3855], type: 'Private', colleges: [{ name: 'Medicine', totalScorePercent: '95%', tuition: 'EGP 170,000 / year' }, { name: 'Dentistry', totalScorePercent: '94%', tuition: 'EGP 160,000 / year' }] },
+                { id: 39, name: 'Heliopolis University for Sustainable Development', location: 'El Sherouk', description: 'A private university with a unique focus on sustainability.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=Heliopolis+University', coordinates: [30.1415, 31.5990], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '87%', tuition: 'EGP 90,000 / year' }, { name: 'Pharmacy', totalScorePercent: '89%', tuition: 'EGP 100,000 / year' }] },
+                { id: 40, name: 'Egyptian Russian University (ERU)', location: 'Badr City', description: 'A private university with strong ties to Russian universities.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=ERU', coordinates: [30.1348, 31.7456], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '88%', tuition: 'EGP 80,000 / year' }, { name: 'Pharmacy', totalScorePercent: '90%', tuition: 'EGP 95,000 / year' }] },
+                { id: 41, name: 'Thebes Higher Institute', location: 'Maadi', description: 'A private higher education institution.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=Thebes+Institute', coordinates: [29.9670, 31.2589], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '80%', tuition: 'EGP 40,000 / year' }, { name: 'Information Systems', totalScorePercent: '75%', tuition: 'EGP 35,000 / year' }] },
+                { id: 42, name: 'Higher Institute of Engineering and Technology', location: 'New Damietta', description: 'Focuses on technical and engineering education.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=HIET', coordinates: [31.4253, 31.8105], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '85%', tuition: 'EGP 50,000 / year' }] },
+                { id: 43, name: 'Canadian International College (CIC)', location: 'Sheikh Zayed City', description: 'Offers Canadian-style education in Egypt.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=CIC', coordinates: [29.9880, 30.9324], type: 'Private', colleges: [{ name: 'Business Administration', totalScorePercent: '82%', tuition: 'EGP 90,000 / year' }, { name: 'Mass Communication', totalScorePercent: '80%', tuition: 'EGP 85,000 / year' }] },
+                { id: 44, name: 'Arab Academy for Science, Technology & Maritime Transport (AASTMT)', location: 'Alexandria', description: 'A regional institution specializing in technology and transport.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=AASTMT', coordinates: [31.2001, 29.9187], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '90%', tuition: 'EGP 110,000 / year' }, { name: 'Maritime Transport', totalScorePercent: '85%', tuition: 'EGP 95,000 / year' }] },
+                { id: 45, name: 'Beni-Suef University', location: 'Beni-Suef', description: 'A public university in Middle Egypt.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=Beni-Suef+University', coordinates: [29.0768, 31.0963], type: 'Public', colleges: [{ name: 'Medicine', totalScorePercent: '96%', tuition: 'EGP 9,000 / year' }, { name: 'Engineering', totalScorePercent: '90%', tuition: 'EGP 8,500 / year' }] },
+                { id: 46, name: 'Damietta University', location: 'Damietta', description: 'A public university on the Mediterranean coast.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=Damietta+University', coordinates: [31.4168, 31.8153], type: 'Public', colleges: [{ name: 'Pharmacy', totalScorePercent: '94%', tuition: 'EGP 10,000 / year' }, { name: 'Commerce', totalScorePercent: '78%', tuition: 'EGP 4,000 / year' }] },
+                { id: 47, name: 'Matrouh University', location: 'Matrouh', description: 'A public university in the far northwest of Egypt.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=Matrouh+University', coordinates: [31.3508, 27.2346], type: 'Public', colleges: [{ name: 'Agriculture', totalScorePercent: '75%', tuition: 'EGP 5,000 / year' }, { name: 'Education', totalScorePercent: '70%', tuition: 'EGP 3,000 / year' }] },
+                { id: 48, name: 'Suez University of Technology', location: 'Suez', description: 'A public university focused on technical education.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=Suez+University+of+Technology', coordinates: [29.9880, 32.5350], type: 'Public', colleges: [{ name: 'Industrial Technology', totalScorePercent: '85%', tuition: 'EGP 7,000 / year' }, { name: 'Information Technology', totalScorePercent: '82%', tuition: 'EGP 6,500 / year' }] },
+                { id: 49, name: 'El Alamein International University', location: 'El Alamein', description: 'A private university with a strong international focus on the North Coast.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=El+Alamein+University', coordinates: [30.8242, 28.9405], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '90%', tuition: 'EGP 110,000 / year' }, { name: 'Pharmacy', totalScorePercent: '92%', tuition: 'EGP 120,000 / year' }] },
+                { id: 50, name: 'New Giza University', location: 'New Giza', description: 'A private university offering high-quality, modern programs.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=New+Giza+University', coordinates: [29.9850, 30.9850], type: 'Private', colleges: [{ name: 'Medicine', totalScorePercent: '97%', tuition: 'EGP 200,000 / year' }, { name: 'Dentistry', totalScorePercent: '96%', tuition: 'EGP 180,000 / year' }] },
+                { id: 51, name: 'Egyptian E-Learning University', location: 'Cairo', description: 'Specializes in online and distance education.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=E-Learning+University', coordinates: [30.0444, 31.2357], type: 'Public', colleges: [{ name: 'Commerce', totalScorePercent: '75%', tuition: 'EGP 3,000 / year' }, { name: 'Computer Science', totalScorePercent: '80%', tuition: 'EGP 4,500 / year' }] },
+                { id: 52, name: 'Al-Azhar University', location: 'Cairo', description: 'The world\'s oldest degree-granting university, focusing on Islamic studies.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=Al-Azhar+University', coordinates: [30.0450, 31.2612], type: 'Public', colleges: [{ name: 'Islamic Theology', totalScorePercent: '80%', tuition: 'EGP 2,000 / year' }, { name: 'Medicine', totalScorePercent: '95%', tuition: 'EGP 8,000 / year' }] },
+                { id: 53, name: 'October 6 University (O6U)', location: '6th of October City', description: 'A private university with a wide range of faculties.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=O6U', coordinates: [29.9818, 30.9575], type: 'Private', colleges: [{ name: 'Medicine', totalScorePercent: '95%', tuition: 'EGP 160,000 / year' }, { name: 'Engineering', totalScorePercent: '88%', tuition: 'EGP 105,000 / year' }] },
+                { id: 54, name: 'Shorouk Academy', location: 'El Sherouk', description: 'A private academy with various engineering and business departments.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=Shorouk+Academy', coordinates: [30.1345, 31.5992], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '85%', tuition: 'EGP 50,000 / year' }, { name: 'Business Administration', totalScorePercent: '78%', tuition: 'EGP 35,000 / year' }] },
+                { id: 55, name: 'Higher Institute of Architectural Engineering', location: 'Alexandria', description: 'Specializes in architectural and civil engineering.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=HIAE', coordinates: [31.2185, 29.9238], type: 'Private', colleges: [{ name: 'Architectural Engineering', totalScorePercent: '87%', tuition: 'EGP 55,000 / year' }] },
+                { id: 56, name: 'Institute of Aviation Engineering and Technology (IAET)', location: 'Giza', description: 'Offers programs in aviation engineering.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=IAET', coordinates: [30.0275, 31.2096], type: 'Private', colleges: [{ name: 'Aviation Engineering', totalScorePercent: '88%', tuition: 'EGP 70,000 / year' }] },
+                { id: 57, name: 'Egyptian Academy for Engineering and Advanced Technology (EAEAT)', location: 'Cairo', description: 'A private institution for advanced engineering studies.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=EAEAT', coordinates: [30.0754, 31.2858], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '86%', tuition: 'EGP 60,000 / year' }] },
+                { id: 58, name: 'Modern Academy for Engineering and Technology in Maadi', location: 'Maadi', description: 'Focuses on modern engineering and technology.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=Modern+Academy', coordinates: [29.9670, 31.2589], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '84%', tuition: 'EGP 50,000 / year' }] },
+                { id: 59, name: 'Higher Institute of Engineering and Technology, New Cairo', location: 'New Cairo', description: 'Offers various engineering programs in a modern campus.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=HIET+New+Cairo', coordinates: [30.0125, 31.4429], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '85%', tuition: 'EGP 55,000 / year' }] },
+                { id: 60, name: 'International Academy for Engineering & Media Science', location: 'Giza', description: 'A unique academy blending engineering and media.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=IAEMS', coordinates: [30.0275, 31.2096], type: 'Private', colleges: [{ name: 'Media Science', totalScorePercent: '78%', tuition: 'EGP 45,000 / year' }, { name: 'Engineering', totalScorePercent: '85%', tuition: 'EGP 60,000 / year' }] },
+                { id: 61, name: 'Badr University in Cairo (BUC)', location: 'Badr City', description: 'A private university with a wide array of faculties.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=BUC', coordinates: [30.1348, 31.7456], type: 'Private', colleges: [{ name: 'Pharmacy', totalScorePercent: '92%', tuition: 'EGP 110,000 / year' }, { name: 'Dentistry', totalScorePercent: '94%', tuition: 'EGP 140,000 / year' }] },
+                { id: 62, name: 'New Capital University (NCU)', location: 'New Administrative Capital', description: 'A brand-new university in Egypt\'s new capital city.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=NCU', coordinates: [30.0444, 31.2357], type: 'Private', colleges: [{ name: 'Medicine', totalScorePercent: '98%', tuition: 'EGP 190,000 / year' }, { name: 'Engineering', totalScorePercent: '95%', tuition: 'EGP 150,000 / year' }] },
+                { id: 63, name: 'Knowledge Hub Universities', location: 'New Administrative Capital', description: 'A collaboration of international universities in one campus.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=Knowledge+Hub', coordinates: [30.0444, 31.2357], type: 'Private', colleges: [{ name: 'Business', totalScorePercent: '88%', tuition: 'EGP 120,000 / year' }, { name: 'Computer Science', totalScorePercent: '90%', tuition: 'EGP 130,000 / year' }] },
+                { id: 64, name: 'The Knowledge City', location: 'New Administrative Capital', description: 'A large educational city with a focus on technology.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=Knowledge+City', coordinates: [30.0444, 31.2357], type: 'National', colleges: [{ name: 'Information Technology', totalScorePercent: '90%', tuition: 'EGP 70,000 / year' }, { name: 'Engineering', totalScorePercent: '92%', tuition: 'EGP 75,000 / year' }] },
+                { id: 65, name: 'The Egyptian Japanese University (E-JUST)', location: 'Borg El Arab', description: 'A research-based university with Japanese partners.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=E-JUST', coordinates: [30.8876, 29.6200], type: 'National', colleges: [{ name: 'Engineering', totalScorePercent: '95%', tuition: 'EGP 80,000 / year' }, { name: 'International Business', totalScorePercent: '90%', tuition: 'EGP 70,000 / year' }] },
+                { id: 66, name: 'Misr University of Technology and Science (MUST)', location: '6th of October City', description: 'A private university with a wide range of academic programs.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=MUST', coordinates: [29.9824, 30.9691], type: 'Private', colleges: [{ name: 'Medicine', totalScorePercent: '96%', tuition: 'EGP 180,000 / year' }, { name: 'Pharmacy', totalScorePercent: '94%', tuition: 'EGP 160,000 / year' }] },
+                { id: 67, name: 'International Islamic University for Science and Technology', location: 'Suez', description: 'A private university with a focus on Islamic and scientific studies.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=IIUST', coordinates: [29.9880, 32.5350], type: 'Private', colleges: [{ name: 'Islamic Studies', totalScorePercent: '75%', tuition: 'EGP 25,000 / year' }, { name: 'Engineering', totalScorePercent: '88%', tuition: 'EGP 70,000 / year' }] },
+                { id: 68, name: 'South Cairo Technical College', location: 'Cairo', description: 'A technical college providing vocational training.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=SCTC', coordinates: [30.0444, 31.2357], type: 'Technical', colleges: [{ name: 'Industrial Technology', totalScorePercent: '65%', tuition: 'EGP 5,000 / year' }, { name: 'Electrical Engineering Technology', totalScorePercent: '68%', tuition: 'EGP 6,000 / year' }] },
+                { id: 69, name: 'Higher Institute of Tourism and Hotels', location: 'Giza', description: 'Specializes in tourism and hotel management.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=HITH', coordinates: [30.0275, 31.2096], type: 'Private', colleges: [{ name: 'Tourism and Hotels', totalScorePercent: '70%', tuition: 'EGP 30,000 / year' }] },
+                { id: 70, name: 'International Academy of Engineering and Media Science (IAEMS)', location: 'Giza', description: 'A private academy offering programs in engineering and media science.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=IAEMS', coordinates: [30.0275, 31.2096], type: 'Private', colleges: [{ name: 'Media Science', totalScorePercent: '78%', tuition: 'EGP 45,000 / year' }, { name: 'Engineering', totalScorePercent: '85%', tuition: 'EGP 60,000 / year' }] },
+                { id: 71, name: 'Arab Open University (AOU)', location: 'Cairo', description: 'A university providing open and distance learning.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=AOU', coordinates: [30.0444, 31.2357], type: 'Private', colleges: [{ name: 'Business Studies', totalScorePercent: '70%', tuition: 'EGP 25,000 / year' }, { name: 'Information Technology', totalScorePercent: '75%', tuition: 'EGP 30,000 / year' }] },
+                { id: 72, name: 'Future Academy', location: 'New Cairo', description: 'A private academy with a focus on applied sciences.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=Future+Academy', coordinates: [30.0125, 31.4429], type: 'Private', colleges: [{ name: 'Computer Science', totalScorePercent: '80%', tuition: 'EGP 40,000 / year' }, { name: 'Business Administration', totalScorePercent: '75%', tuition: 'EGP 35,000 / year' }] },
+                { id: 73, name: 'Misr for Science and Technology University (MUST)', location: '6th of October City', description: 'A leading private university with extensive facilities.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=MUST', coordinates: [29.9824, 30.9691], type: 'Private', colleges: [{ name: 'Medicine', totalScorePercent: '96%', tuition: 'EGP 180,000 / year' }, { name: 'Pharmacy', totalScorePercent: '94%', tuition: 'EGP 160,000 / year' }] },
+                { id: 74, name: 'Modern University for Technology and Information (MTI)', location: 'Maadi', description: 'A private university with a focus on technology and information.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=MTI', coordinates: [29.9670, 31.2589], type: 'Private', colleges: [{ name: 'Computer Science', totalScorePercent: '82%', tuition: 'EGP 50,000 / year' }, { name: 'Engineering', totalScorePercent: '85%', tuition: 'EGP 60,000 / year' }] },
+                { id: 75, name: 'October High Institute for Engineering and Technology', location: '6th of October City', description: 'Offers engineering programs.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=OHIET', coordinates: [29.9824, 30.9691], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '85%', tuition: 'EGP 55,000 / year' }] },
+                { id: 76, name: 'The American College of Technology', location: 'New Cairo', description: 'A private college offering technical programs with an American curriculum.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=ACT', coordinates: [30.0125, 31.4429], type: 'Private', colleges: [{ name: 'Business Information Systems', totalScorePercent: '75%', tuition: 'EGP 40,000 / year' }] },
+                { id: 77, name: 'Thebes Academy', location: 'Maadi', description: 'A private academy for management and information systems.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=Thebes+Academy', coordinates: [29.9670, 31.2589], type: 'Private', colleges: [{ name: 'Information Systems', totalScorePercent: '70%', tuition: 'EGP 30,000 / year' }] },
+                { id: 78, name: 'October High Institute for Mass Communication', location: '6th of October City', description: 'Specializes in mass communication and media studies.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=OHIMC', coordinates: [29.9824, 30.9691], type: 'Private', colleges: [{ name: 'Mass Communication', totalScorePercent: '80%', tuition: 'EGP 45,000 / year' }] },
+                { id: 79, name: 'Higher Institute of Applied Arts', location: '6th of October City', description: 'A specialized institute for applied arts.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=HIAA', coordinates: [29.9824, 30.9691], type: 'Private', colleges: [{ name: 'Applied Arts', totalScorePercent: '85%', tuition: 'EGP 50,000 / year' }] },
+                { id: 80, name: 'Higher Institute of Engineering and Technology', location: 'Helwan', description: 'Offers various engineering programs in Helwan.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=HIET+Helwan', coordinates: [29.8450, 31.3323], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '84%', tuition: 'EGP 50,000 / year' }] },
+                { id: 81, name: 'The American University in Cairo (AUC)', location: 'New Cairo', description: 'A prestigious private university with a liberal arts curriculum.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=AUC', coordinates: [29.9880, 31.4397], type: 'Private', colleges: [{ name: 'Business', totalScorePercent: '90%', tuition: 'EGP 250,000 / year' }, { name: 'Engineering', totalScorePercent: '92%', tuition: 'EGP 280,000 / year' }] },
+                { id: 82, name: 'Modern Academy in Maadi', location: 'Maadi', description: 'A private academy offering a variety of programs.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=Modern+Academy+Maadi', coordinates: [29.9670, 31.2589], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '84%', tuition: 'EGP 50,000 / year' }, { name: 'Information Systems', totalScorePercent: '75%', tuition: 'EGP 35,000 / year' }] },
+                { id: 83, name: 'Higher Institute of Specific Studies', location: 'Giza', description: 'Offers specialized technical programs.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=HISS', coordinates: [30.0275, 31.2096], type: 'Private', colleges: [{ name: 'Applied Sciences', totalScorePercent: '78%', tuition: 'EGP 40,000 / year' }] },
+                { id: 84, name: 'New Cairo Academy for Sciences and Arts', location: 'New Cairo', description: 'A private academy for science and arts.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=NCASA', coordinates: [30.0125, 31.4429], type: 'Private', colleges: [{ name: 'Arts', totalScorePercent: '75%', tuition: 'EGP 30,000 / year' }, { name: 'Science', totalScorePercent: '80%', tuition: 'EGP 40,000 / year' }] },
+                { id: 85, name: 'Arab Academy for Banking and Financial Sciences', location: 'Cairo', description: 'Specializes in banking and finance.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=AABFS', coordinates: [30.0444, 31.2357], type: 'Private', colleges: [{ name: 'Banking and Finance', totalScorePercent: '80%', tuition: 'EGP 45,000 / year' }] },
+                { id: 86, name: 'Higher Institute of Computer Science and Technology', location: 'Cairo', description: 'Focuses on computer science and information technology.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=HICST', coordinates: [30.0754, 31.2858], type: 'Private', colleges: [{ name: 'Computer Science', totalScorePercent: '80%', tuition: 'EGP 40,000 / year' }] },
+                { id: 87, name: 'International Academy for Science and Technology', location: 'Suez', description: 'A private academy for science and technology.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=IAST', coordinates: [29.9880, 32.5350], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '85%', tuition: 'EGP 60,000 / year' }, { name: 'Computer Science', totalScorePercent: '82%', tuition: 'EGP 50,000 / year' }] },
+                { id: 88, name: 'Misr University for Science and Technology (MUST)', location: '6th of October City', description: 'A major private university in 6th of October City.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=MUST', coordinates: [29.9824, 30.9691], type: 'Private', colleges: [{ name: 'Medicine', totalScorePercent: '96%', tuition: 'EGP 180,000 / year' }, { name: 'Pharmacy', totalScorePercent: '94%', tuition: 'EGP 160,000 / year' }] },
+                { id: 89, name: 'Nile Academy', location: 'Mansoura', description: 'A private academy in the Nile Delta.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=Nile+Academy', coordinates: [31.0410, 31.3802], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '82%', tuition: 'EGP 45,000 / year' }] },
+                { id: 90, name: 'The Egyptian Academy for Scientific Research and Technology', location: 'Cairo', description: 'A governmental institution for scientific research.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=EASRT', coordinates: [30.0444, 31.2357], type: 'Public', colleges: [{ name: 'Research Sciences', totalScorePercent: '90%', tuition: 'EGP 10,000 / year' }] },
+                { id: 91, name: 'Thebes Higher Institute for Modern Sciences', location: 'Maadi', description: 'A private institute with modern scientific programs.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=Thebes+Institute', coordinates: [29.9670, 31.2589], type: 'Private', colleges: [{ name: 'Business Administration', totalScorePercent: '78%', tuition: 'EGP 35,000 / year' }, { name: 'Information Technology', totalScorePercent: '80%', tuition: 'EGP 40,000 / year' }] },
+                { id: 92, name: 'Higher Institute of Specific Studies for Women', location: 'Maadi', description: 'A specialized institute for women.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=HISW', coordinates: [29.9670, 31.2589], type: 'Private', colleges: [{ name: 'Applied Sciences', totalScorePercent: '75%', tuition: 'EGP 35,000 / year' }] },
+                { id: 93, name: 'Helwan Academy', location: 'Helwan', description: 'A private academy for engineering and technology.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=Helwan+Academy', coordinates: [29.8450, 31.3323], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '83%', tuition: 'EGP 48,000 / year' }] },
+                { id: 94, name: 'The Egyptian Academy for Advanced Technology', location: 'Cairo', description: 'A private academy with a focus on advanced technology.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=EAAAT', coordinates: [30.0754, 31.2858], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '85%', tuition: 'EGP 60,000 / year' }] },
+                { id: 95, name: 'The American College', location: 'Giza', description: 'A private college offering various technical programs.', imageUrl: 'https://placehold.co/400x200/DDA0DD/FFF?text=The+American+College', coordinates: [30.0275, 31.2096], type: 'Private', colleges: [{ name: 'Business', totalScorePercent: '75%', tuition: 'EGP 35,000 / year' }] },
+                { id: 96, name: 'The British International College', location: 'Alexandria', description: 'A private college with British partners.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=BIC', coordinates: [31.2001, 29.9187], type: 'Private', colleges: [{ name: 'Business Administration', totalScorePercent: '82%', tuition: 'EGP 90,000 / year' }] },
+                { id: 97, name: 'The Egyptian International University', location: 'New Cairo', description: 'A private international university.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=EIU', coordinates: [30.0125, 31.4429], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '90%', tuition: 'EGP 105,000 / year' }, { name: 'Business', totalScorePercent: '85%', tuition: 'EGP 90,000 / year' }] },
+                { id: 98, name: 'The Higher Institute of Engineering', location: '6th of October City', description: 'A specialized engineering institute.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=HIE', coordinates: [29.9824, 30.9691], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '86%', tuition: 'EGP 58,000 / year' }] },
+                { id: 99, name: 'The Higher Institute of Technology', location: 'Giza', description: 'Focuses on modern technology.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=HIT', coordinates: [30.0275, 31.2096], type: 'Private', colleges: [{ name: 'Information Technology', totalScorePercent: '80%', tuition: 'EGP 42,000 / year' }] },
+                { id: 100, name: 'The International Academy', location: 'Cairo', description: 'A private international academy.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=TIA', coordinates: [30.0444, 31.2357], type: 'Private', colleges: [{ name: 'Business Administration', totalScorePercent: '80%', tuition: 'EGP 45,000 / year' }] },
+                { id: 101, name: 'Misr University of Technology and Science (MUST)', location: '6th of October City', description: 'A leading private university with extensive facilities.', imageUrl: 'https://placehold.co/400x200/536878/FFF?text=MUST', coordinates: [29.9824, 30.9691], type: 'Private', colleges: [{ name: 'Medicine', totalScorePercent: '96%', tuition: 'EGP 180,000 / year' }, { name: 'Pharmacy', totalScorePercent: '94%', tuition: 'EGP 160,000 / year' }] },
+                { id: 102, name: 'Modern University for Technology and Information (MTI)', location: 'Maadi', description: 'A private university with a focus on technology and information.', imageUrl: 'https://placehold.co/400x200/A9A9A9/FFF?text=MTI', coordinates: [29.9670, 31.2589], type: 'Private', colleges: [{ name: 'Computer Science', totalScorePercent: '82%', tuition: 'EGP 50,000 / year' }, { name: 'Engineering', totalScorePercent: '85%', tuition: 'EGP 60,000 / year' }] },
+                { id: 103, name: 'October High Institute for Engineering and Technology', location: '6th of October City', description: 'Offers engineering programs.', imageUrl: 'https://placehold.co/400x200/B0C4DE/FFF?text=OHIET', coordinates: [29.9824, 30.9691], type: 'Private', colleges: [{ name: 'Engineering', totalScorePercent: '85%', tuition: 'EGP 55,000 / year' }] },
+                { id: 104, name: 'The American College of Technology', location: 'New Cairo', description: 'A private college offering technical programs with an American curriculum.', imageUrl: 'https://placehold.co/400x200/87CEEB/FFF?text=ACT', coordinates: [30.0125, 31.4429], type: 'Private', colleges: [{ name: 'Business Information Systems', totalScorePercent: '75%', tuition: 'EGP 40,000 / year' }] },
+                { id: 105, name: 'Thebes Academy', location: 'Maadi', description: 'A private academy for management and information systems.', imageUrl: 'https://placehold.co/400x200/5F9EA0/FFF?text=Thebes+Academy', coordinates: [29.9670, 31.2589], type: 'Private', colleges: [{ name: 'Information Systems', totalScorePercent: '70%', tuition: 'EGP 30,000 / year' }] }
+            ];
+
+            // A placeholder for all available colleges across all universities for the filter.
+            const allColleges = [...new Set(universities.flatMap(u => u.colleges.map(c => c.name)))];
+            const allTypes = [...new Set(universities.map(u => u.type))];
+
+            // --- UI Functions ---
+
+            /**
+             * Hides all sections and shows a specific one based on its ID.
+             * Also handles special setup for certain sections like the map.
+             * @param {string} id The ID of the section to show.
+             */
+            const showSection = (id) => {
+                // First, hide all sections
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                // Then, show the target section
+                const targetSection = document.getElementById(id);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+
+                // Special handling for the map section to ensure it renders correctly
+                if (id === 'map-section') {
+                    if (!window.myMap) {
+                        initializeMap();
+                    }
+                    // Invalidate size is necessary for Leaflet to redraw the map correctly
+                    setTimeout(() => {
+                        window.myMap.invalidateSize();
+                    }, 100);
+                }
+
+                // Update profile data when showing the profile section
+                if (id === 'profile-section') {
+                    profileName.textContent = currentUser.name;
+                    profileEmail.textContent = currentUser.email;
+                }
+
+                // Hide the mobile navigation menu after a section link is clicked
+                if (window.innerWidth <= 767) {
+                    mainNav.classList.remove('active');
+                }
+            };
+
+            /**
+             * Toggles the navigation bar between logged-in and logged-out states.
+             * @param {boolean} isLoggedIn A boolean indicating the user's authentication status.
+             */
+            const updateNav = (isLoggedIn) => {
+                isAuthenticated = isLoggedIn;
+                if (isLoggedIn) {
+                    navAuthSection.classList.add('hidden');
+                    navProfileSection.classList.remove('hidden');
+                    currentUserNameSpan.textContent = currentUser.name;
+                } else {
+                    navAuthSection.classList.remove('hidden');
+                    navProfileSection.classList.add('hidden');
+                }
+            };
+
+            /**
+             * Displays a temporary message box notification to the user.
+             * @param {string} message The message to display.
+             * @param {string} [type='success'] The type of message ('success' or 'error').
+             */
+            const showMessage = (message, type = 'success') => {
+                // Get CSS custom property values to avoid hardcoding colors
+                const rootStyles = getComputedStyle(document.documentElement);
+                const successColor = rootStyles.getPropertyValue('--success-color').trim();
+                const errorColor = rootStyles.getPropertyValue('--error-color').trim();
+
+                messageBox.textContent = message;
+                messageBox.className = ''; // Clear existing classes
+                messageBox.classList.add('show');
+                messageBox.style.backgroundColor = type === 'success' ? successColor : errorColor;
+
+                setTimeout(() => {
+                    messageBox.classList.remove('show');
+                }, 3000);
+            };
+
+            /**
+             * Renders a list of universities to the DOM.
+             * @param {Array<Object>} filteredUniversities The array of university objects to render.
+             */
+            const renderUniversities = (filteredUniversities) => {
+                universitiesList.innerHTML = '';
+                resultsCount.textContent = `Showing ${filteredUniversities.length} universities`;
+                if (filteredUniversities.length === 0) {
+                    universitiesList.innerHTML = `<p style="text-align: center; color: #555;">No universities found matching your criteria.</p>`;
+                }
+                filteredUniversities.forEach(university => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    card.innerHTML = `
+                        <img src="${university.imageUrl}" alt="Image of ${university.name}">
+                        <div class="card-content">
+                            <h3 class="card-title">${university.name}</h3>
+                            <p class="card-location" aria-label="Location: ${university.location}"><i class="fas fa-map-marker-alt"></i> ${university.location}</p>
+                            <p class="card-type">Type: ${university.type}</p>
+                            <p>${university.description.substring(0, 100)}...</p>
+                            <div class="card-actions">
+                                <button class="btn view-details-btn" data-id="${university.id}">View Details</button>
+                            </div>
+                        </div>
+                    `;
+                    universitiesList.appendChild(card);
+                });
+            };
+
+            /**
+             * Renders the detailed view of a single university.
+             * @param {Object} university The university object to render.
+             */
+            const renderUniversityDetails = (university) => {
+                universityDetailsContent.innerHTML = `
+                    <div class="details-grid">
+                        <div>
+                            <img src="${university.imageUrl}" alt="Image of ${university.name}">
+                        </div>
+                        <div class="details-content">
+                            <h2>${university.name}</h2>
+                            <p class="card-location"><i class="fas fa-map-marker-alt"></i> ${university.location}</p>
+                            <p><strong>Description:</strong> ${university.description}</p>
+                            <h3>Colleges and Admission Details:</h3>
+                            <ul class="colleges-list">
+                                ${university.colleges.map(college => `
+                                    <li class="college-card">
+                                        <div class="college-info">
+                                            <strong>${college.name}</strong>
+                                            <p>Required Score: ${college.totalScorePercent}</p>
+                                            <p>Tuition: ${college.tuition}</p>
+                                        </div>
+                                        <button class="btn btn-primary apply-btn" data-college-name="${college.name}">Apply Now</button>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            };
+
+            /**
+             * Filters the university list based on search and filter criteria.
+             */
+            const filterUniversities = () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedCollege = collegeSelect.value;
+                const selectedType = typeSelect.value;
+
+                const filtered = universities.filter(uni => {
+                    const matchesSearch = uni.name.toLowerCase().includes(searchTerm);
+                    const matchesType = selectedType === '' || uni.type === selectedType;
+                    const matchesCollege = selectedCollege === '' || uni.colleges.some(c => c.name === selectedCollege);
+                    return matchesSearch && matchesType && matchesCollege;
+                });
+                renderUniversities(filtered);
+            };
+
+            /**
+             * Populates the filter dropdowns with unique college and university type options.
+             */
+            const populateSelects = () => {
+                // Populate college filter
+                allColleges.sort().forEach(college => {
+                    const option = document.createElement('option');
+                    option.value = college;
+                    option.textContent = college;
+                    collegeSelect.appendChild(option);
+                });
+
+                // Populate type filter
+                allTypes.sort().forEach(type => {
+                    const option = document.createElement('option');
+                    option.value = type;
+                    option.textContent = type;
+                    typeSelect.appendChild(option);
+                });
+            };
+
+            /**
+             * Initializes the Leaflet map and adds markers for all universities.
+             */
+            const initializeMap = () => {
+                if (mapContainer && !window.myMap) {
+                    window.myMap = L.map('map').setView([26.8206, 30.8025], 6); // Egypt's center
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 19,
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(window.myMap);
+
+                    universities.forEach(uni => {
+                        L.marker(uni.coordinates).addTo(window.myMap)
+                            .bindPopup(`<b>${uni.name}</b><br>${uni.location}`)
+                            .openPopup();
+                    });
+                }
+            };
+
+            // --- Event Listeners ---
+
+            // Hamburger menu toggle for mobile navigation
+            hamburgerMenu.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+            });
+
+            // Main click handler for navigation and modal controls
+            document.addEventListener('click', (e) => {
+                // Navigate to sections using data-section attribute
+                if (e.target.matches('[data-section]')) {
+                    e.preventDefault();
+                    showSection(e.target.dataset.section);
+                }
+
+                // Show Modals
+                if (e.target.id === 'login-nav-btn') { loginModal.classList.add('visible'); }
+                if (e.target.id === 'signup-nav-btn') { signupModal.classList.add('visible'); }
+
+                // Logout button
+                if (e.target.id === 'logout-btn') {
+                    isAuthenticated = false;
+                    currentUser.name = 'Guest';
+                    currentUser.email = '';
+                    updateNav(isAuthenticated);
+                    showSection('hero-section');
+                    showMessage('You have been logged out.');
+                }
+
+                // View details button on university cards
+                if (e.target.classList.contains('view-details-btn')) {
+                    const universityId = parseInt(e.target.dataset.id);
+                    const university = universities.find(u => u.id === universityId);
+                    if (university) {
+                        renderUniversityDetails(university);
+                        showSection('university-details-section');
+                    }
+                }
+
+                // Apply button on university details page
+                if (e.target.classList.contains('apply-btn')) {
+                    if (!isAuthenticated) {
+                        showMessage('Please log in or sign up to apply.', 'error');
+                        return;
+                    }
+                    const collegeName = e.target.dataset.collegeName;
+                    selectedCollege = collegeName;
+                    applyModalTitle.textContent = `Apply for ${collegeName}`;
+                    applyModal.classList.add('visible');
+                    // Reset forms and payment options
+                    applyFormStep1.classList.add('active');
+                    applyFormStep2.classList.remove('active');
+                    applyFormStep1.reset();
+                    applyFormStep2.reset();
+                    document.getElementById('credit-card-fields').classList.add('hidden');
+                    document.getElementById('mobile-wallet-fields').classList.remove('hidden');
+                    document.getElementById('mobileWallet').checked = true;
+                }
+
+                // Modal close buttons or clicking outside the modal
+                if (e.target.classList.contains('close-btn') || e.target.classList.contains('modal')) {
+                    loginModal.classList.remove('visible');
+                    signupModal.classList.remove('visible');
+                    applyModal.classList.remove('visible');
+                }
+
+                // Back button on the university details page
+                if (e.target.id === 'back-to-universities') {
+                    showSection('universities-section');
+                }
+            });
+
+            // Apply form navigation
+            nextStepBtn.addEventListener('click', () => {
+                // Only proceed if the first form step is valid
+                if (applyFormStep1.checkValidity()) {
+                    applyFormStep1.classList.remove('active');
+                    applyFormStep2.classList.add('active');
+                } else {
+                    applyFormStep1.reportValidity();
+                }
+            });
+
+            prevStepBtn.addEventListener('click', () => {
+                applyFormStep2.classList.remove('active');
+                applyFormStep1.classList.add('active');
+            });
+
+            // Payment method change listener for the application form
+            document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.value === 'mobileWallet') {
+                        mobileWalletFields.classList.remove('hidden');
+                        creditCardFields.classList.add('hidden');
+                    } else {
+                        mobileWalletFields.classList.add('hidden');
+                        creditCardFields.classList.remove('hidden');
+                    }
+                });
+            });
+
+            // Form submission listeners
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                isAuthenticated = true;
+                currentUser.name = 'John Doe'; // Placeholder name
+                currentUser.email = document.getElementById('loginEmail').value;
+                showMessage('Login successful!');
+                loginModal.classList.remove('visible');
+                updateNav(isAuthenticated);
+                showSection('hero-section');
+                e.target.reset();
+            });
+
+            signupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                isAuthenticated = true;
+                currentUser.name = document.getElementById('signupName').value;
+                currentUser.email = document.getElementById('signupEmail').value;
+                showMessage('Sign up successful! Welcome!');
+                signupModal.classList.remove('visible');
+                updateNav(isAuthenticated);
+                showSection('hero-section');
+                e.target.reset();
+            });
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                showMessage('Thank you for your message! We will get back to you shortly.');
+                e.target.reset();
+            });
+
+            accountSettingsForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newName = settingsNameInput.value;
+                const newPassword = settingsNewPasswordInput.value;
+                const confirmPassword = settingsConfirmPasswordInput.value;
+
+                if (newPassword && newPassword !== confirmPassword) {
+                    showMessage('New passwords do not match.', 'error');
+                    return;
+                }
+
+                currentUser.name = newName;
+                // In a real application, this is where you would send data to a server
+                showMessage('Account settings updated successfully!');
+                settingsNewPasswordInput.value = '';
+                settingsConfirmPasswordInput.value = '';
+                showSection('profile-section');
+                updateNav(isAuthenticated);
+            });
+
+            applyFormStep2.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (applyFormStep2.checkValidity()) {
+                    applyModal.classList.remove('visible');
+                    showMessage(`Application for ${selectedCollege} submitted successfully!`);
+                    selectedCollege = null;
+                } else {
+                    applyFormStep2.reportValidity();
+                }
+            });
+
+            // Filter event listeners
+            searchInput.addEventListener('input', filterUniversities);
+            collegeSelect.addEventListener('change', filterUniversities);
+            typeSelect.addEventListener('change', filterUniversities);
+
+            // --- Initial Setup on page load ---
+            updateNav(isAuthenticated);
+            populateSelects();
+            renderUniversities(universities);
+            showSection('hero-section');
+        });
+    </script>
+</body>
+
+</html>

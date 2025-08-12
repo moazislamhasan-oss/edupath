@@ -1,18 +1,6 @@
 {
   "users": [
     {
-      "id": "1754945885173",
-      "name": "Islam Hassan",
-      "email": "islam@hassan.com",
-      "passwordHash": "$2b$10$nGBLkoFmpo1SMtzvenBW/O/g7YGJp9Ue6kLEXdGjfgwptiadDkA1m"
-    },
-    {
-      "id": "1754945997693",
-      "name": "Islam Hassan",
-      "email": "islam@islam.com",
-      "passwordHash": "$2b$10$uvq5sbqp9K0rTQgw8O240OFBh63a92c6J76lofDiD1Q5uil6TXn3W"
-    },
-    {
       "id": "1754976327232",
       "name": "Moaz Islam",
       "email": "moaz.islam@gmail.com",

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .section {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #3498db;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    .btn {
+      padding: 8px 12px;
+      margin: 2px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .btn-edit { background: #f39c12; color: white; }
+    .btn-delete { background: #e74c3c; color: white; }
+    .btn-add { background: #2ecc71; color: white; }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .close {
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Admin Dashboard</h1>
+
+    <!-- Applications Section -->
+    <div class="section">
+      <h2>Applications</h2>
+      <table id="applicationsTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Full Name</th>
+            <th>College</th>
+            <th>Status</th>
+            <th>Submitted At</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Accounts Section -->
+    <div class="section">
+      <h2>User Accounts</h2>
+      <table id="accountsTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password Hash</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Universities Section -->
+    <div class="section">
+      <h2>Universities <button class="btn btn-add" onclick="openAddUniversityModal()">Add University</button></h2>
+      <table id="universitiesTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Type</th>
+            <th>Colleges</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Add/Edit University Modal -->
+  <div id="universityModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle">Add University</h2>
+      <form id="universityForm">
+        <input type="hidden" id="universityId" />
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" id="name" required />
+        </div>
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" id="location" required />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="description" rows="3" class="form-control" required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Image URL</label>
+          <input type="url" id="imageUrl" required />
+        </div>
+        <div class="form-group">
+          <label>Coordinates (lat, lng)</label>
+          <input type="text" id="coordinates" placeholder="30.0275, 31.2096" required />
+        </div>
+        <div class="form-group">
+          <label>Type</label>
+          <select id="type" required>
+            <option value="Public">Public</option>
+            <option value="Private">Private</option>
+            <option value="National">National</option>
+            <option value="Technical">Technical</option>
+          </select>
+        </div>
+        <h3>Colleges</h3>
+        <div id="collegesContainer"></div>
+        <button type="button" class="btn btn-add" onclick="addCollegeField()">+ Add College</button>
+        <div style="margin-top: 20px;">
+          <button type="submit" class="btn btn-success">Save</button>
+          <button type="button" class="btn" onclick="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Base URL for your server
+    const API_BASE = 'http://localhost:3000';
+
+    // Load all data on page load
+    async function loadData() {
+      try {
+        await loadApplications();
+        await loadAccounts();
+        await loadUniversities();
+      } catch (err) {
+        alert('Failed to load data: ' + err.message);
+      }
+    }
+
+    // === Load Applications ===
+    async function loadApplications() {
+      const tbody = document.querySelector('#applicationsTable tbody');
+      tbody.innerHTML = '';
+      const resp = await fetch(`${API_BASE}/api/applications`); // You'll need to add this route
+      const apps = await resp.json();
+
+      apps.forEach(app => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${app.id}</td>
+          <td>${app.userId}</td>
+          <td>${app.fullName}</td>
+          <td>${app.college}</td>
+          <td>${app.status}</td>
+          <td>${new Date(app.submittedAt).toLocaleString()}</td>
+          <td>
+            <button class="btn btn-edit" onclick="editApplication(${app.id})">Edit</button>
+            <button class="btn btn-delete" onclick="deleteApplication(${app.id})">Delete</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // === Load Accounts ===
+    async function loadAccounts() {
+      const tbody = document.querySelector('#accountsTable tbody');
+      tbody.innerHTML = '';
+      const resp = await fetch(`${API_BASE}/api/accounts`); // You'll need to add this route
+      const data = await resp.json();
+
+      data.users.forEach(user => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${user.id}</td>
+          <td>${user.name}</td>
+          <td>${user.email}</td>
+          <td><code>${user.passwordHash}</code></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // === Load Universities ===
+    let universities = [];
+    async function loadUniversities() {
+      const tbody = document.querySelector('#universitiesTable tbody');
+      tbody.innerHTML = '';
+      const resp = await fetch(`${API_BASE}/api/universities`);
+      universities = await resp.json();
+      universities.items.forEach(uni => {
+        const collegeNames = uni.colleges.map(c => c.name).join(', ');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${uni.id}</td>
+          <td>${uni.name}</td>
+          <td>${uni.location}</td>
+          <td>${uni.type}</td>
+          <td>${collegeNames}</td>
+          <td>
+            <button class="btn btn-edit" onclick="openEditUniversityModal(${uni.id})">Edit</button>
+            <button class="btn btn-delete" onclick="deleteUniversity(${uni.id})">Delete</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // === CRUD for Universities ===
+    function openAddUniversityModal() {
+      document.getElementById('modalTitle').textContent = 'Add University';
+      document.getElementById('universityForm').reset();
+      document.getElementById('universityId').value = '';
+      document.getElementById('collegesContainer').innerHTML = '';
+      document.getElementById('universityModal').style.display = 'flex';
+    }
+
+    function openEditUniversityModal(id) {
+      const uni = universities.items.find(u => u.id === id);
+      if (!uni) return;
+
+      document.getElementById('modalTitle').textContent = 'Edit University';
+      document.getElementById('universityId').value = uni.id;
+      document.getElementById('name').value = uni.name;
+      document.getElementById('location').value = uni.location;
+      document.getElementById('description').value = uni.description;
+      document.getElementById('imageUrl').value = uni.imageUrl;
+      document.getElementById('coordinates').value = uni.coordinates.join(', ');
+      document.getElementById('type').value = uni.type;
+
+      const container = document.getElementById('collegesContainer');
+      container.innerHTML = '';
+      uni.colleges.forEach((college, index) => {
+        addCollegeField(college.name, college.totalScorePercent, college.tuition, index);
+      });
+
+      document.getElementById('universityModal').style.display = 'flex';
+    }
+
+    function addCollegeField(name = '', score = '', tuition = '', index = null) {
+      const container = document.getElementById('collegesContainer');
+      const div = document.createElement('div');
+      div.className = 'form-group';
+      div.innerHTML = `
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px;">
+          <input type="text" placeholder="College Name" value="${name}" required style="grid-column: span 1" data-name />
+          <input type="text" placeholder="Score %" value="${score}" style="grid-column: span 1" data-score />
+          <input type="text" placeholder="Tuition" value="${tuition}" style="grid-column: span 1" data-tuition />
+          <button type="button" class="btn btn-delete" onclick="this.parentElement.remove()">X</button>
+        </div>
+      `;
+      container.appendChild(div);
+    }
+
+    document.getElementById('universityForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('universityId').value;
+      const method = id ? 'PUT' : 'POST';
+      const url = id ? `${API_BASE}/api/universities/${id}` : `${API_BASE}/api/universities`;
+
+      const colleges = [];
+      document.querySelectorAll('#collegesContainer > div').forEach(group => {
+        const inputs = group.querySelectorAll('input');
+        colleges.push({
+          name: inputs[0].value,
+          totalScorePercent: inputs[1].value || 'N/A',
+          tuition: inputs[2].value || 'N/A'
+        });
+      });
+
+      const university = {
+        id: id ? Number(id) : Date.now(),
+        name: document.getElementById('name').value,
+        location: document.getElementById('location').value,
+        description: document.getElementById('description').value,
+        imageUrl: document.getElementById('imageUrl').value,
+        coordinates: document.getElementById('coordinates').value.split(',').map(s => parseFloat(s.trim())),
+        type: document.getElementById('type').value,
+        colleges
+      };
+
+      await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(university)
+      });
+
+      closeModal();
+      await loadUniversities();
+      alert('University saved successfully!');
+    });
+
+    async function deleteUniversity(id) {
+      if (!confirm('Are you sure you want to delete this university?')) return;
+      await fetch(`${API_BASE}/api/universities/${id}`, { method: 'DELETE' });
+      await loadUniversities();
+      alert('University deleted!');
+    }
+
+    function closeModal() {
+      document.getElementById('universityModal').style.display = 'none';
+    }
+
+    // === Applications Actions (Optional) ===
+    function editApplication(id) {
+      alert('Edit application ' + id + ' - You can extend this.');
+    }
+
+    async function deleteApplication(id) {
+      if (!confirm('Delete this application?')) return;
+      await fetch(`${API_BASE}/api/applications/${id}`, { method: 'DELETE' });
+      await loadApplications();
+      alert('Application deleted!');
+    }
+
+    // === Add API Routes to server.js (Important!) ===
+    /*
+    You must add these routes to your server.js:
+
+    1. GET /api/applications -> returns all applications
+    2. GET /api/accounts -> returns all users
+    3. Full CRUD for /api/universities
+    */
+
+    // Load data when page loads
+    window.onload = loadData;
+  </script>
+</body>
+</html>

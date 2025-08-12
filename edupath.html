@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPath - University Finder Egypt</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        /*
+         * EduPath: University Finder App CSS
+         * This stylesheet defines the look and feel of the entire application.
+         * It uses CSS custom properties (variables) for easy theme management.
+         *
+         * @author Gemini
+         * @version 2.0
+         */
+
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+        /* --- Global Variables --- */
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #007bff;
+            --secondary-hover: #0056b3;
+            --accent-color: #ffc107;
+            --text-color: #333333;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e0e0e0;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --success-color: #28a745;
+            --error-color: #dc3545;
+            --header-height: 4rem;
+        }
+
+        /* --- Base & Typography --- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Header & Navigation --- */
+        .header {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 5px var(--shadow-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .logo:hover {
+            color: var(--secondary-hover);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav a,
+        .btn {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .nav a:hover {
+            background-color: var(--light-bg);
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            cursor: pointer;
+            border: 1px solid var(--secondary-color);
+            background-color: transparent;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: var(--primary-color);
+            border: none;
+        }
+
+        .btn-secondary {
+            background-color: var(--border-color);
+            color: var(--text-color);
+            border: none;
+        }
+
+        .nav-auth-buttons .btn {
+            margin-left: 0.5rem;
+        }
+
+        .nav-profile-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* --- Main Content Layout --- */
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        .section {
+            display: none;
+            padding: 2rem 0;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Hero Section --- */
+        #hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1200x600/536878/FFF?text=Discover+Your+Future') no-repeat center center/cover;
+            color: var(--primary-color);
+            text-align: center;
+            padding: 5rem 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+
+        #hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        #hero-section p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* --- Grid and Cards --- */
+        .grid-container {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-location {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-type {
+            font-style: italic;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-actions {
+            text-align: right;
+            margin-top: 1rem;
+        }
+
+        /* --- University Section --- */
+        #universities-section .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            background-color: var(--card-bg);
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        #universities-section .filter-container input,
+        #universities-section .filter-container select {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            flex: 1;
+            max-width: 300px;
+            font-size: 1rem;
+        }
+
+        #universities-section .results-count {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        /* --- Forms & Modals --- */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group.radio-group {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.radio-group label {
+            font-weight: normal;
+            display: inline-block;
+            margin-bottom: 0;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.visible .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .modal-content .step-form {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .modal-content .step-form.active {
+            display: block;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .modal-footer .btn {
+            flex: 1;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--text-color);
+        }
+
+        /* --- University Details Section --- */
+        #university-details-section .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        #university-details-section .details-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+
+        #university-details-section .details-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        #university-details-section .details-content h2 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        #university-details-section .details-content p {
+            line-height: 1.6;
+        }
+
+        #university-details-section .details-content .colleges-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        #university-details-section .details-content .college-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        #university-details-section .details-content .college-card:hover {
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        #university-details-section .details-content .college-info {
+            flex: 1;
+        }
+
+        /* --- Profile Section --- */
+        #profile-section .profile-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.5rem;
+        }
+
+        #profile-section .profile-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 4px solid var(--secondary-color);
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        #profile-section .profile-card h2 {
+            margin: 0.5rem 0;
+        }
+
+        /* --- Map Section --- */
+        #map {
+            height: 600px;
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--text-color);
+            color: var(--primary-color);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        /* --- Message Box --- */
+        #message-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 1rem 2rem;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 3000;
+        }
+
+        #message-box.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* --- Mobile Styles & Responsive Design --- */
+
+        /* Hamburger menu for mobile */
+        .hamburger-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .hamburger-menu:hover {
+            transform: scale(1.1);
+        }
+
+        @media (min-width: 768px) {
+            .header .nav-links {
+                display: flex !important;
+            }
+
+            .header .nav-auth-buttons,
+            .header .nav-profile-menu {
+                display: flex !important;
+            }
+
+            #university-details-section .details-grid {
+                grid-template-columns: 2fr 3fr;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .header .container {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .header .logo {
+                order: 1;
+            }
+
+            .hamburger-menu {
+                display: block;
+                order: 2;
+            }
+
+            .header .nav {
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+                display: none;
+                text-align: center;
+                margin-top: 1rem;
+            }
+
+            .header .nav.active {
+                display: flex;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.5rem;
+            }
+
+            .nav-auth-buttons,
+            .nav-profile-menu {
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .filter-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+     * --- Main Header and Navigation ---
+     * This is the sticky navigation bar at the top of the page.
+     * It includes the logo, main navigation links, and authentication buttons.
+     -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo" id="home-link" aria-label="Go to Home Page">EduPath</a>
+            <i class="fas fa-bars hamburger-menu" id="hamburger-menu" aria-label="Open navigation menu"></i>
+            <nav class="nav" id="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#" data-section="about-section">About</a></li>
+                    <li><a href="#" data-section="features-section">Features</a></li>
+                    <li id="universitiesli"><a href="#" data-section="universities-section">Universities</a></li>
+                    <li><a href="#" data-section="map-section">Map</a></li>
+                    <li><a href="#" data-section="contact-section">Contact</a></li>
+                </ul>
+                <div class="nav-auth-buttons" id="nav-auth-section">
+                    <a href="#" class="btn" id="login-nav-btn">Log In</a>
+                    <a href="#" class="btn btn-primary" id="signup-nav-btn">Sign Up</a>
+                </div>
+                <div class="nav-profile-menu" id="nav-profile-section">
+                    <a href="#" class="btn" id="profile-section" data-section="profile-section"
+                        aria-label="View user profile">
+                        <i class="fas fa-user-circle"></i> <span id="current-user-name"></span>
+                    </a>
+                    <a href="#" class="btn" id="account-settings" data-section="account-settings-section"
+                        aria-label="Go to account settings">Settings</a>
+                    <button class="btn" id="logout-btn">Log Out</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 
+     * --- Main Content Area ---
+     * This section holds all the different pages/sections of the website.
+     * Only one section is visible at a time, controlled by the `active` class.
+     -->
+    <main class="main-content container">
+
+        <!-- Home Page / Hero Section -->
+        <section id="hero-section" class="section active">
+            <h1>Discover Your Future</h1>
+            <p>Find the perfect university in Egypt with ease. Explore programs, compare institutions, and start your
+                academic journey today.</p>
+            <a href="#" class="btn btn-primary" id="exploreUniversityBtn" data-section="universities-section">Explore
+                Universities</a>
+        </section>
+
+        <!-- About Section -->
+        <section id="about-section" class="section">
+            <h2 class="section-title">About EduPath</h2>
+            <div class="card">
+                <div class="card-content">
+                    <p>EduPath is your premier guide to higher education in Egypt. We provide comprehensive information
+                        on a wide range of universities, including their programs, admission requirements, and campus
+                        life. Our goal is to empower prospective students with the knowledge they need to make informed
+                        decisions about their academic future. We believe that every student deserves a clear path to
+                        success, and EduPath is here to light the way.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features-section" class="section">
+            <h2 class="section-title">Key Features</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <div class="card-content">
+                        <i class="fas fa-search fa-2x"></i>
+                        <h3 class="card-title">Comprehensive Search</h3>
+                        <p>Easily search and filter universities based on location, programs, and acceptance rates to
+                            find the perfect match.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <i class="fas fa-map-marked-alt fa-2x"></i>
+                        <h3 class="card-title">Interactive Map</h3>
+                        <p>Visualize university locations across Egypt with our interactive map, helping you understand
+                            their geographical distribution.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <i class="fas fa-user-graduate fa-2x"></i>
+                        <h3 class="card-title">Detailed Profiles</h3>
+                        <p>Get in-depth information on each university, including descriptions, available colleges, and
+                            tuition estimates.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Universities List Section -->
+        <section id="universities-section" class="section">
+            <h2 class="section-title">Universities in Egypt</h2>
+            <p id="results-count" class="results-count">Showing 105 universities</p>
+            <div class="filter-container">
+                <input type="text" id="search-input" placeholder="Search by university name...">
+                <select id="type-select">
+                    <option value="">Filter by Type</option>
+                </select>
+                <select id="college-select">
+                    <option value="">Filter by Faculty</option>
+                </select>
+            </div>
+            <div class="grid-container" id="universities-list">
+                <!-- University cards will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- University Details Section -->
+        <section id="university-details-section" class="section">
+            <button class="btn back-btn" id="back-to-universities" aria-label="Back to university list"><i
+                    class="fas fa-arrow-left"></i> Back to Universities</button>
+            <div id="university-details-content">
+                <!-- University details will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Interactive Map Section -->
+        <section id="map-section" class="section">
+            <h2 class="section-title">University Map</h2>
+            <div id="map"></div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact-section" class="section">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="card">
+                <div class="card-content">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="contactName">Name</label>
+                            <input type="text" id="contactName" name="contactName" required
+                                aria-label="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required
+                                aria-label="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" name="contactMessage" rows="5" required
+                                aria-label="Enter your message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                    <p id="contact-message-status"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Profile Section -->
+        <section id="profile-section" class="section">
+            <h2 class="section-title">User Profile</h2>
+            <div class="card profile-card">
+                <img src="https://placehold.co/150x150/e0e0e0/555?text=User" alt="Profile Picture">
+                <h2 id="profile-name">User Name</h2>
+                <p id="profile-email">user@example.com</p>
+                <div class="profile-actions">
+                    <button class="btn btn-primary" data-section="account-settings-section">Account Settings</button>
+                    <!-- This button is deprecated in favor of the full settings page -->
+                    <button class="btn hidden" id="edit-profile-btn">Edit Profile</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Account Settings Section -->
+        <section id="account-settings-section" class="section">
+            <h2 class="section-title">Account Settings</h2>
+            <div class="card">
+                <div class="card-content">
+                    <h3>Edit your Information</h3>
+                    <form id="account-settings-form">
+                        <div class="form-group">
+                            <label for="settingsName">Name</label>
+                            <input type="text" id="settingsName" name="settingsName" required
+                                aria-label="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsEmail">Email</label>
+                            <input type="email" id="settingsEmail" name="settingsEmail" disabled
+                                aria-label="Your email address, not editable">
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsNewPassword">New Password</label>
+                            <input type="password" id="settingsNewPassword" name="settingsNewPassword"
+                                aria-label="Enter new password">
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsConfirmPassword">Confirm New Password</label>
+                            <input type="password" id="settingsConfirmPassword" name="settingsConfirmPassword"
+                                aria-label="Confirm new password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 EduPath. All Rights Reserved.</p>
+    </footer>
+
+    <!-- 
+     * --- Modals for Login, Signup, and Application ---
+     * These are hidden overlays that appear on user interaction.
+     * The `visible` class controls their display.
+     -->
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" aria-label="Close login form">&times;</span>
+            <h3>Log In</h3>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required aria-label="Enter your email for login">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required aria-label="Enter your password for login">
+                </div>
+                <button type="submit" class="btn btn-primary">Log In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" aria-label="Close signup form">&times;</span>
+            <h3>Sign Up</h3>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signupName">Name</label>
+                    <input type="text" id="signupName" required aria-label="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required aria-label="Enter your email address">
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required aria-label="Create a password">
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Application Modal -->
+    <div id="apply-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" aria-label="Close application form">&times;</span>
+            <h3 id="apply-modal-title">Apply for [College Name]</h3>
+
+            <form id="apply-form-step-1" class="step-form active">
+                <h4>Personal Information</h4>
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required aria-label="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="birthDate">Birth Date</label>
+                    <input type="date" id="birthDate" name="birthDate" required aria-label="Enter your birth date">
+                </div>
+                <div class="form-group">
+                    <label for="nationalId">National ID</label>
+                    <input type="text" id="nationalId" name="nationalId" required aria-label="Enter your National ID">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" required aria-label="Enter your home address">
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" required aria-label="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="total">Total</label>
+                    <input type="number" id="total" name="total" required aria-label="Enter your Total score">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="next-step-btn">Next</button>
+                </div>
+            </form>
+
+            <form id="apply-form-step-2" class="step-form">
+                <h4>Payment Information</h4>
+                <div class="form-group radio-group">
+                    <input type="radio" id="mobileWallet" name="paymentMethod" value="mobileWallet" checked>
+                    <label for="mobileWallet">Mobile Wallet</label>
+                    <input type="radio" id="creditCard" name="paymentMethod" value="creditCard">
+                    <label for="creditCard">Credit/Debit Card</label>
+                </div>
+
+                <div id="mobile-wallet-fields">
+                    <div class="form-group">
+                        <label for="mobileWalletNumber">Mobile Wallet Number</label>
+                        <input type="tel" id="mobileWalletNumber" name="mobileWalletNumber" required
+                            aria-label="Enter mobile wallet number">
+                    </div>
+                </div>
+
+                <div id="credit-card-fields" class="hidden">
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="text" id="cardNumber" name="cardNumber" required
+                            aria-label="Enter credit card number">
+                    </div>
+                    <div class="form-group">
+                        <label for="cardExpiry">Expiry Date (MM/YY)</label>
+                        <input type="text" id="cardExpiry" name="cardExpiry" required
+                            aria-label="Enter card expiry date">
+                    </div>
+                    <div class="form-group">
+                        <label for="cardCvv">CVV</label>
+                        <input type="text" id="cardCvv" name="cardCvv" required aria-label="Enter card CVV">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn" id="prev-step-btn">Back</button>
+                    <button type="submit" class="btn btn-success">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Message Box for notifications -->
+    <div id="message-box" role="alert" aria-live="polite"></div>
+
+    <!-- Leaflet JS for the map -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+
+            // --- Auth persistence (localStorage) ---
+            const STORAGE_KEYS = {
+                auth: 'edupath:isAuthenticated',
+                user: 'edupath:currentUser'
+            };
+
+            const saveSession = () => {
+                try {
+                    localStorage.setItem(STORAGE_KEYS.auth, JSON.stringify(isAuthenticated));
+                    localStorage.setItem(STORAGE_KEYS.user, JSON.stringify(currentUser));
+                } catch (e) {
+                    console.warn('Could not write to localStorage', e);
+                }
+            };
+
+            const loadSession = () => {
+                try {
+                    const savedAuth = localStorage.getItem(STORAGE_KEYS.auth);
+                    const savedUser = localStorage.getItem(STORAGE_KEYS.user);
+
+                    if (savedAuth && JSON.parse(savedAuth) === true && savedUser) {
+                        isAuthenticated = true;
+                        const parsedUser = JSON.parse(savedUser);
+                        // basic shape guard
+                        currentUser = {
+                            name: parsedUser?.name || 'User',
+                            email: parsedUser?.email || ''
+                        };
+                        ShowAuthenticatedSection();
+                        currentUserNameSpan.textContent = currentUser.name;
+
+                        // prefill settings fields
+                        if (settingsNameInput) settingsNameInput.value = currentUser.name || '';
+                        if (settingsEmailInput) settingsEmailInput.value = currentUser.email || '';
+
+                        // keep them wherever they are; or navigate if you'd like:
+                        // showSection('universities-section');
+                    } else {
+                        // ensure clean logged-out UI
+                        isAuthenticated = false;
+                        currentUser = { name: 'Guest', email: 'guest@example.com' };
+                        ShowAuthenticatedSection();
+                    }
+                } catch (e) {
+                    console.warn('Could not read from localStorage', e);
+                }
+            };
+
+            const clearSession = () => {
+                try {
+                    localStorage.removeItem(STORAGE_KEYS.auth);
+                    localStorage.removeItem(STORAGE_KEYS.user);
+                } catch (e) {
+                    console.warn('Could not clear localStorage', e);
+                }
+            };
+
+
+            // --- Application State and Data ---
+            let isAuthenticated = false;
+
+
+            let currentUser = {
+                name: 'Guest',
+                email: 'guest@example.com'
+            };
+            let selectedCollege = null;
+
+            // --- DOM Element References ---
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const mainNav = document.getElementById('main-nav');
+            const sections = document.querySelectorAll('.section');
+            const universitiesList = document.getElementById('universities-list');
+            const collegeSelect = document.getElementById('college-select');
+            const typeSelect = document.getElementById('type-select');
+            const searchInput = document.getElementById('search-input');
+            const resultsCount = document.getElementById('results-count');
+            const universityDetailsContent = document.getElementById('university-details-content');
+            const mapContainer = document.getElementById('map');
+            const contactForm = document.getElementById('contact-form');
+
+            // Modals
+            const loginModal = document.getElementById('login-modal');
+            const signupModal = document.getElementById('signup-modal');
+            const applyModal = document.getElementById('apply-modal');
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            const messageBox = document.getElementById('message-box');
+
+            // Apply Modal Elements
+            const applyModalTitle = document.getElementById('apply-modal-title');
+            const applyFormStep1 = document.getElementById('apply-form-step-1');
+            const applyFormStep2 = document.getElementById('apply-form-step-2');
+            const nextStepBtn = document.getElementById('next-step-btn');
+            const prevStepBtn = document.getElementById('prev-step-btn');
+            const mobileWalletFields = document.getElementById('mobile-wallet-fields');
+            const creditCardFields = document.getElementById('credit-card-fields');
+
+            // Profile & Settings
+            const navAuthSection = document.getElementById('nav-auth-section');
+            const navProfileSection = document.getElementById('nav-profile-section');
+            const currentUserNameSpan = document.getElementById('current-user-name');
+            const profileName = document.getElementById('profile-name');
+            const profileEmail = document.getElementById('profile-email');
+            const settingsNameInput = document.getElementById('settingsName');
+            const settingsEmailInput = document.getElementById('settingsEmail');
+            const settingsNewPasswordInput = document.getElementById('settingsNewPassword');
+            const settingsConfirmPasswordInput = document.getElementById('settingsConfirmPassword');
+            const accountSettingsForm = document.getElementById('account-settings-form');
+            const loginNav = document.getElementById('login-nav-btn');
+            const signUpNav = document.getElementById('signup-nav-btn');
+
+            const settingNav = document.getElementById('account-settings');
+            const profileNav = document.getElementById('profile-section');
+            const logoutbtn = document.getElementById('logout-btn');
+            const universitiesli = document.getElementById('universitiesli');
+            const showUniversityBtn = document.getElementById('exploreUniversityBtn');
+
+            ShowAuthenticatedSection();
+            loadSession();
+
+            function loadUniversities() {
+                try {
+                    const resp = fetch('/api/universities');
+                    if (!resp.ok) throw new Error('Failed to load universities');
+                    const data = resp.json();
+                    universities = data.items || [];
+
+                    populateSelects();        // now that we have data
+                    renderUniversities(universities);
+                } catch (err) {
+                    console.error(err);
+                    showMessage('Could not load universities from server.', 'error');
+                }
+            }
+
+            // --- Data: 105 Universities in Egypt ---
+            let universities = []; // will be fetched
+
+
+            // A placeholder for all available colleges across all universities for the filter.
+            const allColleges = [...new Set(universities.flatMap(u => u.colleges.map(c => c.name)))];
+            const allTypes = [...new Set(universities.map(u => u.type))];
+
+            // --- UI Functions ---
+
+            /**
+             * Hides all sections and shows a specific one based on its ID.
+             * Also handles special setup for certain sections like the map.
+             * @param {string} id The ID of the section to show.
+             */
+            const showSection = (id) => {
+                // First, hide all sections
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                // Then, show the target section
+                const targetSection = document.getElementById(id);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+
+                // Special handling for the map section to ensure it renders correctly
+                if (id === 'map-section') {
+                    if (!window.myMap) {
+                        initializeMap();
+                    }
+                    // Invalidate size is necessary for Leaflet to redraw the map correctly
+                    setTimeout(() => {
+                        window.myMap.invalidateSize();
+                    }, 100);
+                }
+
+                // Update profile data when showing the profile section
+                if (id === 'profile-section') {
+                    profileName.textContent = currentUser.name;
+                    profileEmail.textContent = currentUser.email;
+                }
+
+                // Hide the mobile navigation menu after a section link is clicked
+                if (window.innerWidth <= 767) {
+                    mainNav.classList.remove('active');
+                }
+            };
+
+
+            function ShowAuthenticatedSection() {
+                if (isAuthenticated === true) {
+                    loginNav.style.display = 'none';
+                    signUpNav.style.display = 'none';
+                    profileNav.style.display = 'block';
+                    settingNav.style.display = 'block';
+                    logoutbtn.style.display = 'block';
+                    universitiesli.style.display = 'block';
+                    showUniversityBtn.style.display = '';
+                    currentUserNameSpan.textContent = currentUser.name || 'User';
+
+                    // keep profile/settings in sync
+                    profileName.textContent = currentUser.name || 'User';
+                    profileEmail.textContent = currentUser.email || '';
+                    if (settingsNameInput) settingsNameInput.value = currentUser.name || '';
+                    if (settingsEmailInput) settingsEmailInput.value = currentUser.email || '';
+                } else {
+                    loginNav.style.display = 'block';
+                    signUpNav.style.display = 'block';
+                    profileNav.style.display = 'none';
+                    settingNav.style.display = 'none';
+                    logoutbtn.style.display = 'none';
+                    universitiesli.style.display = 'none';
+                    showUniversityBtn.style.display = 'none';
+
+                    currentUserNameSpan.textContent = '';
+                }
+            }
+            /**
+             * Toggles the navigation bar between logged-in and logged-out states.
+             * @param {boolean} isLoggedIn A boolean indicating the user's authentication status.
+             */
+            const updateNav = (isLoggedIn) => {
+                isAuthenticated = isLoggedIn;
+                if (isLoggedIn) {
+                    navAuthSection.classList.add('hidden');
+                    navProfileSection.classList.remove('hidden');
+                    currentUserNameSpan.textContent = currentUser.name;
+                } else {
+                    navAuthSection.classList.remove('hidden');
+                    navProfileSection.classList.add('hidden');
+                }
+            };
+
+            /**
+             * Displays a temporary message box notification to the user.
+             * @param {string} message The message to display.
+             * @param {string} [type='success'] The type of message ('success' or 'error').
+             */
+            const showMessage = (message, type = 'success') => {
+                // Get CSS custom property values to avoid hardcoding colors
+                const rootStyles = getComputedStyle(document.documentElement);
+                const successColor = rootStyles.getPropertyValue('--success-color').trim();
+                const errorColor = rootStyles.getPropertyValue('--error-color').trim();
+
+                messageBox.textContent = message;
+                messageBox.className = ''; // Clear existing classes
+                messageBox.classList.add('show');
+                messageBox.style.backgroundColor = type === 'success' ? successColor : errorColor;
+
+                setTimeout(() => {
+                    messageBox.classList.remove('show');
+                }, 3000);
+            };
+
+            /**
+             * Renders a list of universities to the DOM.
+             * @param {Array<Object>} filteredUniversities The array of university objects to render.
+             */
+            const renderUniversities = (filteredUniversities) => {
+                universitiesList.innerHTML = '';
+                resultsCount.textContent = `Showing ${filteredUniversities.length} universities`;
+                if (filteredUniversities.length === 0) {
+                    universitiesList.innerHTML = `<p style="text-align: center; color: #555;">No universities found matching your criteria.</p>`;
+                }
+                filteredUniversities.forEach(university => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    card.innerHTML = `
+                        <img src="${university.imageUrl}" alt="Image of ${university.name}">
+                        <div class="card-content">
+                            <h3 class="card-title">${university.name}</h3>
+                            <p class="card-location" aria-label="Location: ${university.location}"><i class="fas fa-map-marker-alt"></i> ${university.location}</p>
+                            <p class="card-type">Type: ${university.type}</p>
+                            <p>${university.description.substring(0, 100)}...</p>
+                            <div class="card-actions">
+                                <button class="btn view-details-btn" data-id="${university.id}">View Details</button>
+                            </div>
+                        </div>
+                    `;
+                    universitiesList.appendChild(card);
+                });
+            };
+
+            /**
+             * Renders the detailed view of a single university.
+             * @param {Object} university The university object to render.
+             */
+            const renderUniversityDetails = (university) => {
+                universityDetailsContent.innerHTML = `
+                    <div class="details-grid">
+                        <div>
+                            <img src="${university.imageUrl}" alt="Image of ${university.name}">
+                        </div>
+                        <div class="details-content">
+                            <h2>${university.name}</h2>
+                            <p class="card-location"><i class="fas fa-map-marker-alt"></i> ${university.location}</p>
+                            <p><strong>Description:</strong> ${university.description}</p>
+                            <h3>Colleges and Admission Details:</h3>
+                            <ul class="colleges-list">
+                                ${university.colleges.map(college => `
+                                    <li class="college-card">
+                                        <div class="college-info">
+                                            <strong>${college.name}</strong>
+                                            <p>Required Score: ${college.totalScorePercent}</p>
+                                            <p>Tuition: ${college.tuition}</p>
+                                        </div>
+                                        <button class="btn btn-primary apply-btn" data-college-name="${college.name}">Apply Now</button>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            };
+
+            /**
+             * Filters the university list based on search and filter criteria.
+             */
+            const filterUniversities = () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedCollege = collegeSelect.value;
+                const selectedType = typeSelect.value;
+
+                const filtered = universities.filter(uni => {
+                    const matchesSearch = uni.name.toLowerCase().includes(searchTerm);
+                    const matchesType = selectedType === '' || uni.type === selectedType;
+                    const matchesCollege = selectedCollege === '' || uni.colleges.some(c => c.name === selectedCollege);
+                    return matchesSearch && matchesType && matchesCollege;
+                });
+                renderUniversities(filtered);
+            };
+
+            async function loadUniversities() {
+                try {
+                    const resp = await fetch('http://localhost:3000/api/universities');
+                    if (!resp.ok) throw new Error('Failed to load universities');
+                    const data = await resp.json();
+                    universities = data.items || [];
+
+                    populateSelects();        // now that we have data
+                    renderUniversities(universities);
+                } catch (err) {
+                    console.error(err);
+                    showMessage('Could not load universities from server.', 'error');
+                }
+            }
+
+            // Add this function
+            async function updateApplicationCounter() {
+                if (!isAuthenticated) return;
+
+                try {
+                    const resp = await fetch(`http://localhost:3000/api/applications/count?email=${encodeURIComponent(currentUser.email)}`);
+                    const data = await resp.json();
+                    const remaining = 3 - data.count;
+                    // Update a DOM element (add <span id="app-count"> in your HTML)
+                    const counterEl = document.getElementById('app-count');
+                    if (counterEl) {
+                        counterEl.textContent = `Applications: ${data.count}/3`;
+                        counterEl.style.color = remaining === 0 ? 'red' : '#007bff';
+                    }
+                } catch (err) {
+                    console.warn('Could not update counter');
+                }
+            }
+
+            function getAllColleges() {
+                return [...new Set(universities.flatMap(u => (u.colleges || []).map(c => c.name)))].sort();
+            }
+            function getAllTypes() {
+                return [...new Set(universities.map(u => u.type))].sort();
+            }
+
+            /**
+             * Populates the filter dropdowns with unique college and university type options.
+             */
+            const populateSelects = () => {
+                // clear old options
+                collegeSelect.innerHTML = '<option value="">Filter by Faculty</option>';
+                typeSelect.innerHTML = '<option value="">Filter by Type</option>';
+
+                getAllColleges().forEach(college => {
+                    const option = document.createElement('option');
+                    option.value = college;
+                    option.textContent = college;
+                    collegeSelect.appendChild(option);
+                });
+
+                getAllTypes().forEach(type => {
+                    const option = document.createElement('option');
+                    option.value = type;
+                    option.textContent = type;
+                    typeSelect.appendChild(option);
+                });
+            };
+
+            /**
+             * Initializes the Leaflet map and adds markers for all universities.
+             */
+            const initializeMap = () => {
+                if (mapContainer && !window.myMap) {
+                    window.myMap = L.map('map').setView([26.8206, 30.8025], 6); // Egypt's center
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 19,
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(window.myMap);
+
+                    universities.forEach(uni => {
+                        L.marker(uni.coordinates).addTo(window.myMap)
+                            .bindPopup(`<b>${uni.name}</b><br>${uni.location}`)
+                            .openPopup();
+                    });
+                }
+            };
+
+            // --- Event Listeners ---
+
+            // Hamburger menu toggle for mobile navigation
+            hamburgerMenu.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+            });
+
+            // Main click handler for navigation and modal controls
+            document.addEventListener('click', async (e) => {
+                // Navigate to sections using data-section attribute
+                if (e.target.matches('[data-section]')) {
+                    e.preventDefault();
+                    showSection(e.target.dataset.section);
+                }
+
+                // Show Modals
+                if (e.target.id === 'login-nav-btn') { loginModal.classList.add('visible'); }
+                if (e.target.id === 'signup-nav-btn') { signupModal.classList.add('visible'); }
+
+                if (e.target.id === 'home-link') {
+                    showSection('hero-section');
+                }
+                // Logout button
+                if (e.target.id === 'logout-btn') {
+                    isAuthenticated = false;
+                    currentUser = { name: 'Guest', email: 'guest@example.com' };
+
+                    clearSession();                   // <-- remove from storage
+                    ShowAuthenticatedSection();
+
+                    showSection('hero-section');
+                    showMessage('You have been logged out.');
+                }
+
+
+                // View details button on university cards
+
+
+                // Apply button on university details page
+                if (e.target.classList.contains('apply-btn')) {
+                    if (!isAuthenticated) {
+                        showMessage('Please log in or sign up to apply.', 'error');
+                        return;
+                    }
+
+                    try {
+                        // Fetch user's current application count
+                        const resp = await fetch(`http://localhost:3000/api/applications/count?email=${encodeURIComponent(currentUser.email)}`);
+                        if (!resp.ok) throw new Error('Could not check application count');
+                        const data = await resp.json();
+                        const applicationCount = data.count;
+
+                        if (applicationCount >= 3) {
+                            showMessage('You have reached the maximum limit of 3 applications.', 'error');
+                            return;
+                        }
+
+                        // Proceed to open apply modal
+                        const collegeName = e.target.dataset.collegeName;
+                        selectedCollege = collegeName;
+                        applyModalTitle.textContent = `Apply for ${collegeName}`;
+                        applyModal.classList.add('visible');
+
+                        // Auto-fill full name from account
+                        document.getElementById('fullName').value = currentUser.name;
+
+                        // Reset other fields
+                        applyFormStep1.reset();
+                        applyFormStep2.reset();
+                        document.getElementById('fullName').value = currentUser.name; // re-fill after reset
+                        document.getElementById('credit-card-fields').classList.add('hidden');
+                        document.getElementById('mobile-wallet-fields').classList.remove('hidden');
+                        document.getElementById('mobileWallet').checked = true;
+
+                    } catch (err) {
+                        console.error('Error checking application count:', err);
+                        showMessage('Could not verify your application status. Please try again.', 'error');
+                    }
+                }
+
+                // Modal close buttons or clicking outside the modal
+                if (e.target.classList.contains('close-btn') || e.target.classList.contains('modal')) {
+                    loginModal.classList.remove('visible');
+                    signupModal.classList.remove('visible');
+                    applyModal.classList.remove('visible');
+                }
+
+                // Back button on the university details page
+                if (e.target.id === 'back-to-universities') {
+                    showSection('universities-section');
+                }
+            });
+
+            // Apply form navigation
+            nextStepBtn.addEventListener('click', () => {
+                // Only proceed if the first form step is valid
+                if (applyFormStep1.checkValidity()) {
+                    applyFormStep1.classList.remove('active');
+                    applyFormStep2.classList.add('active');
+                } else {
+                    applyFormStep1.reportValidity();
+                }
+            });
+
+            prevStepBtn.addEventListener('click', () => {
+                applyFormStep2.classList.remove('active');
+                applyFormStep1.classList.add('active');
+            });
+
+            // Payment method change listener for the application form
+            document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.value === 'mobileWallet') {
+                        mobileWalletFields.classList.remove('hidden');
+                        creditCardFields.classList.add('hidden');
+                    } else {
+                        mobileWalletFields.classList.add('hidden');
+                        creditCardFields.classList.remove('hidden');
+                    }
+                });
+            });
+
+            // Form submission listeners
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value.trim();
+                const password = document.getElementById('loginPassword').value;
+
+                try {
+                    const resp = await fetch('http://localhost:3000/api/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password })
+                    });
+
+                    if (!resp.ok) {
+                        const err = await resp.json().catch(() => ({}));
+                        showMessage(err.error || 'Login failed', 'error');
+                        return;
+                    }
+
+                    const user = await resp.json();
+                    isAuthenticated = true;
+                    currentUser = { name: user.name, email: user.email };
+
+                    saveSession();
+                    ShowAuthenticatedSection();
+
+                    showMessage('Login successful!');
+                    loginModal.classList.remove('visible');
+                    showSection('hero-section');
+                    e.target.reset();
+                    updateApplicationCounter();
+
+                } catch (err) {
+                    showMessage('Network error during login', 'error');
+                }
+            });
+
+            document.addEventListener('click', async (e) => {
+                if (e.target.classList.contains('view-details-btn')) {
+                    const universityId = parseInt(e.target.dataset.id, 10);
+                    try {
+                        const resp = await fetch(`http://localhost:3000/api/universities/${universityId}`);
+                        if (!resp.ok) throw new Error('Network response was not ok');
+                        const university = await resp.json();
+                        renderUniversityDetails(university);
+                        showSection('university-details-section');
+                    } catch {
+                        showMessage('Could not load university details', 'error');
+                    }
+                }
+            });
+
+            signupForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('signupName').value.trim();
+                const email = document.getElementById('signupEmail').value.trim();
+                const password = document.getElementById('signupPassword').value;
+
+                try {
+                    const resp = await fetch('http://localhost:3000/api/signup', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, email, password })
+                    });
+
+                    if (!resp.ok) {
+                        const err = await resp.json().catch(() => ({}));
+                        showMessage(err.error || 'Sign up failed', 'error');
+                        return;
+                    }
+
+                    const user = await resp.json();
+                    isAuthenticated = true;
+                    currentUser = { name: user.name, email: user.email };
+
+                    saveSession();
+                    ShowAuthenticatedSection();
+
+                    showMessage('Sign up successful! Welcome!');
+                    signupModal.classList.remove('visible');
+                    showSection('hero-section');
+                    e.target.reset();
+                } catch (err) {
+                    showMessage('Network error during signup', 'error');
+                }
+            });
+
+
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                showMessage('Thank you for your message! We will get back to you shortly.');
+                e.target.reset();
+            });
+
+            accountSettingsForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newName = settingsNameInput.value;
+                const newPassword = settingsNewPasswordInput.value;
+                const confirmPassword = settingsConfirmPasswordInput.value;
+
+                if (newPassword && newPassword !== confirmPassword) {
+                    showMessage('New passwords do not match.', 'error');
+                    return;
+                }
+
+                currentUser.name = newName;
+                saveSession(); // <-- keep storage in sync
+
+                // In a real application, this is where you would send data to a server
+                showMessage('Account settings updated successfully!');
+                settingsNewPasswordInput.value = '';
+                settingsConfirmPasswordInput.value = '';
+            });
+
+            applyFormStep2.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (!applyFormStep2.checkValidity()) {
+                    applyFormStep2.reportValidity();
+                    return;
+                }
+
+                // Collect form data
+                const formData = new FormData(applyFormStep2);
+                const applicationData = {
+                    fullName: document.getElementById('fullName').value,
+                    birthDate: document.getElementById('birthDate').value,
+                    nationalId: document.getElementById('nationalId').value,
+                    address: document.getElementById('address').value,
+                    phoneNumber: document.getElementById('phoneNumber').value,
+                    total: document.getElementById('total').value,
+                    paymentMethod: formData.get('paymentMethod'),
+                    college: selectedCollege,
+                    email: currentUser.email // to verify user on server
+                };
+
+                try {
+                    const resp = await fetch('http://localhost:3000/api/apply', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(applicationData)
+                    });
+
+                    if (!resp.ok) {
+                        const err = await resp.json();
+                        throw new Error(err.error || 'Submission failed');
+                    }
+
+                    const result = await resp.json();
+                    applyModal.classList.remove('visible');
+                    showMessage(`Application for ${selectedCollege} submitted successfully! ID: ${result.applicationId}`);
+                    selectedCollege = null;
+                    updateApplicationCounter(); // Update counter
+
+                    applyFormStep1.reset();
+                    applyFormStep2.reset();
+
+                } catch (err) {
+                    console.error('Submit error:', err);
+                    showMessage('Failed to submit application: ' + err.message, 'error');
+                }
+            });
+
+            // Filter event listeners
+            searchInput.addEventListener('input', filterUniversities);
+            collegeSelect.addEventListener('change', filterUniversities);
+            typeSelect.addEventListener('change', filterUniversities);
+
+            // --- Initial Setup on page load ---
+            loadUniversities();
+            showSection('hero-section');
+
+        });
+    </script>
+</body>
+
+</html>

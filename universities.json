@@ -1,0 +1,2174 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Cairo University",
+      "location": "Giza",
+      "description": "One of Egypt's oldest and most prestigious universities, known for its extensive range of faculties and research facilities. Cairo University is a hub of academic excellence and cultural heritage, attracting students from all over the world. Its campus is a vibrant community with a rich history.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=Cairo+University",
+      "coordinates": [30.0275, 31.2096],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "95%",
+          "tuition": "EGP 10,000 / year"
+        },
+        {
+          "name": "Medicine",
+          "totalScorePercent": "98%",
+          "tuition": "EGP 15,000 / year"
+        },
+        {
+          "name": "Commerce",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 5,000 / year"
+        },
+        {
+          "name": "Law",
+          "totalScorePercent": "82%",
+          "tuition": "EGP 6,000 / year"
+        },
+        {
+          "name": "Arts",
+          "totalScorePercent": "78%",
+          "tuition": "EGP 4,500 / year"
+        },
+        {
+          "name": "Economics and Political Science",
+          "totalScorePercent": "92%",
+          "tuition": "EGP 7,500 / year"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Ain Shams University",
+      "location": "Cairo",
+      "description": "A large public university with a strong reputation in medical and engineering fields. Ain Shams University is a leading institution in applied sciences and has a bustling campus environment. Its commitment to innovation and community service makes it a top choice for students.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=Ain+Shams+University",
+      "coordinates": [30.0754, 31.2858],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "97%",
+          "tuition": "EGP 12,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 11,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 13,000 / year"
+        },
+        {
+          "name": "Science",
+          "totalScorePercent": "88%",
+          "tuition": "EGP 6,000 / year"
+        },
+        {
+          "name": "Alsun",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 7,500 / year"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Alexandria University",
+      "location": "Alexandria",
+      "description": "A prominent university located on the Mediterranean coast. Alexandria University is celebrated for its diverse academic programs and strong connection to the city's cultural and historical heritage. It provides a unique educational experience by the sea.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=Alexandria+University",
+      "coordinates": [31.2001, 29.9187],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "93%",
+          "tuition": "EGP 11,500 / year"
+        },
+        {
+          "name": "Medicine",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 14,000 / year"
+        },
+        {
+          "name": "Science",
+          "totalScorePercent": "89%",
+          "tuition": "EGP 7,000 / year"
+        },
+        {
+          "name": "Arts",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 5,500 / year"
+        },
+        {
+          "name": "Fine Arts",
+          "totalScorePercent": "79%",
+          "tuition": "EGP 6,500 / year"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Helwan University",
+      "location": "Helwan",
+      "description": "Known for its focus on arts, applied sciences, and technology, Helwan University offers a wide array of creative and technical programs. It is particularly recognized for its vibrant artistic community and state-of-the-art labs.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=Helwan+University",
+      "coordinates": [29.8450, 31.3323],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Applied Arts",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 9,000 / year"
+        },
+        {
+          "name": "Education",
+          "totalScorePercent": "78%",
+          "tuition": "EGP 4,000 / year"
+        },
+        {
+          "name": "Commerce",
+          "totalScorePercent": "75%",
+          "tuition": "EGP 3,500 / year"
+        },
+        {
+          "name": "Physical Education",
+          "totalScorePercent": "70%",
+          "tuition": "EGP 3,000 / year"
+        },
+        {
+          "name": "Fine Arts",
+          "totalScorePercent": "81%",
+          "tuition": "EGP 7,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "American University in Cairo (AUC)",
+      "location": "New Cairo",
+      "description": "A highly-regarded private, English-language university offering a liberal arts curriculum. AUC is known for its world-class faculty, modern campus, and diverse student body, fostering a global perspective in all its graduates.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=AUC",
+      "coordinates": [29.9880, 31.4397],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Business",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 250,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "92%",
+          "tuition": "EGP 280,000 / year"
+        },
+        {
+          "name": "Humanities",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 220,000 / year"
+        },
+        {
+          "name": "Social Sciences",
+          "totalScorePercent": "87%",
+          "tuition": "EGP 230,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "The German University in Cairo (GUC)",
+      "location": "New Cairo",
+      "description": "A private German university known for its rigorous programs and strong ties to German academic standards. GUC provides a unique bicultural educational experience, with a focus on engineering, technology, and applied sciences.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=GUC",
+      "coordinates": [29.9703, 31.4239],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "93%",
+          "tuition": "EGP 150,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 160,000 / year"
+        },
+        {
+          "name": "Management",
+          "totalScorePercent": "88%",
+          "tuition": "EGP 140,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Future University in Egypt (FUE)",
+      "location": "New Cairo",
+      "description": "A private university offering modern programs and excellent facilities. FUE is committed to providing a high-quality education that prepares students for the future job market through practical and innovative curricula.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=FUE",
+      "coordinates": [30.0125, 31.4429],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Pharmaceutical Sciences",
+          "totalScorePercent": "91%",
+          "tuition": "EGP 110,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "88%",
+          "tuition": "EGP 95,000 / year"
+        },
+        {
+          "name": "Computer Science",
+          "totalScorePercent": "87%",
+          "tuition": "EGP 85,000 / year"
+        },
+        {
+          "name": "Economics & Political Science",
+          "totalScorePercent": "82%",
+          "tuition": "EGP 70,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "British University in Egypt (BUE)",
+      "location": "El Sherouk",
+      "description": "A British-style university providing high-quality education with programs validated by UK universities. BUE focuses on academic rigor and a supportive learning environment, preparing students for international careers.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=BUE",
+      "coordinates": [30.1332, 31.5979],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 140,000 / year"
+        },
+        {
+          "name": "Business",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 120,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "89%",
+          "tuition": "EGP 135,000 / year"
+        },
+        {
+          "name": "Dentistry",
+          "totalScorePercent": "92%",
+          "tuition": "EGP 160,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Mansoura University",
+      "location": "Mansoura",
+      "description": "A large Egyptian public university in the Nile Delta with a strong reputation in medicine and scientific research. Mansoura University is a major regional educational hub.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=Mansoura+University",
+      "coordinates": [31.0410, 31.3802],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "97%",
+          "tuition": "EGP 10,000 / year"
+        },
+        {
+          "name": "Dentistry",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 11,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "95%",
+          "tuition": "EGP 12,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Suez Canal University",
+      "location": "Ismailia",
+      "description": "A university serving the Suez Canal region, focusing on fields vital to the area's economic development. It is known for its practical approach to education and research.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=Suez+Canal+University",
+      "coordinates": [30.6045, 32.2721],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "91%",
+          "tuition": "EGP 9,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 10,500 / year"
+        },
+        {
+          "name": "Commerce",
+          "totalScorePercent": "79%",
+          "tuition": "EGP 4,500 / year"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Minia University",
+      "location": "Minia",
+      "description": "A public university in Upper Egypt with a wide range of academic programs.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=Minia+University",
+      "coordinates": [28.0933, 30.7513],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 9,500 / year"
+        },
+        {
+          "name": "Arts",
+          "totalScorePercent": "77%",
+          "tuition": "EGP 3,500 / year"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Tanta University",
+      "location": "Tanta",
+      "description": "Located in the heart of the Nile Delta, Tanta University is a major public institution.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=Tanta+University",
+      "coordinates": [30.7937, 30.9996],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "97%",
+          "tuition": "EGP 10,500 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "92%",
+          "tuition": "EGP 9,500 / year"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Zagazig University",
+      "location": "Zagazig",
+      "description": "A public university known for its strong programs in agriculture and veterinary medicine.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=Zagazig+University",
+      "coordinates": [30.5900, 31.5039],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Veterinary Medicine",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 8,000 / year"
+        },
+        {
+          "name": "Agriculture",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 6,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Assiut University",
+      "location": "Assiut",
+      "description": "One of the oldest universities in Upper Egypt, with a focus on scientific research.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=Assiut+University",
+      "coordinates": [27.1812, 31.1893],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "97%",
+          "tuition": "EGP 10,000 / year"
+        },
+        {
+          "name": "Science",
+          "totalScorePercent": "88%",
+          "tuition": "EGP 6,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "South Valley University",
+      "location": "Qena",
+      "description": "Serving the southern region of Egypt with a variety of faculties.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=South+Valley+University",
+      "coordinates": [26.1557, 32.7214],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 9,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 8,500 / year"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Benha University",
+      "location": "Benha",
+      "description": "A public university in the Nile Delta, known for its strong community ties.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=Benha+University",
+      "coordinates": [30.4616, 31.1869],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "93%",
+          "tuition": "EGP 9,000 / year"
+        },
+        {
+          "name": "Medicine",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 10,500 / year"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Sohag University",
+      "location": "Sohag",
+      "description": "A public university in Upper Egypt with a growing reputation.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=Sohag+University",
+      "coordinates": [26.5492, 31.6961],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 9,000 / year"
+        },
+        {
+          "name": "Commerce",
+          "totalScorePercent": "78%",
+          "tuition": "EGP 4,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Damanhour University",
+      "location": "Damanhour",
+      "description": "A public university in the Beheira Governorate.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=Damanhour+University",
+      "coordinates": [31.0425, 30.4674],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 10,000 / year"
+        },
+        {
+          "name": "Arts",
+          "totalScorePercent": "79%",
+          "tuition": "EGP 3,500 / year"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Port Said University",
+      "location": "Port Said",
+      "description": "A university located on the Suez Canal, with a focus on engineering.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=Port+Said+University",
+      "coordinates": [31.2588, 32.3023],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "92%",
+          "tuition": "EGP 9,500 / year"
+        },
+        {
+          "name": "Science",
+          "totalScorePercent": "87%",
+          "tuition": "EGP 5,500 / year"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Kafr El Sheikh University",
+      "location": "Kafr El Sheikh",
+      "description": "A public university in the northern Nile Delta.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=Kafr+El+Sheikh+University",
+      "coordinates": [31.1189, 30.9405],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Veterinary Medicine",
+          "totalScorePercent": "93%",
+          "tuition": "EGP 8,500 / year"
+        },
+        {
+          "name": "Fisheries",
+          "totalScorePercent": "88%",
+          "tuition": "EGP 7,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Luxor University",
+      "location": "Luxor",
+      "description": "Focuses on tourism and hospitality management.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=Luxor+University",
+      "coordinates": [25.6872, 32.6396],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Tourism and Hotels",
+          "totalScorePercent": "75%",
+          "tuition": "EGP 4,000 / year"
+        },
+        {
+          "name": "Arts",
+          "totalScorePercent": "78%",
+          "tuition": "EGP 3,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Fayoum University",
+      "location": "Fayoum",
+      "description": "A public university located in the Fayoum Oasis.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=Fayoum+University",
+      "coordinates": [29.3090, 30.8407],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "91%",
+          "tuition": "EGP 8,500 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 10,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Suez University",
+      "location": "Suez",
+      "description": "Known for its focus on industrial and petroleum engineering.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=Suez+University",
+      "coordinates": [29.9880, 32.5350],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Petroleum Engineering",
+          "totalScorePercent": "95%",
+          "tuition": "EGP 15,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "92%",
+          "tuition": "EGP 10,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Sadat City University",
+      "location": "Sadat City",
+      "description": "A young public university with a focus on technology and industry.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=Sadat+City+University",
+      "coordinates": [30.4075, 30.5284],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Biotechnology",
+          "totalScorePercent": "88%",
+          "tuition": "EGP 7,500 / year"
+        },
+        {
+          "name": "Commerce",
+          "totalScorePercent": "75%",
+          "tuition": "EGP 4,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "New Valley University",
+      "location": "Kharga",
+      "description": "Located in the Western Desert, serving a unique region.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=New+Valley+University",
+      "coordinates": [25.4347, 30.5518],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Agriculture",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 5,000 / year"
+        },
+        {
+          "name": "Veterinary Medicine",
+          "totalScorePercent": "91%",
+          "tuition": "EGP 8,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "name": "Mansoura National University",
+      "location": "Mansoura",
+      "description": "A national university with a focus on advanced technology and research.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=Mansoura+National+University",
+      "coordinates": [31.0410, 31.3802],
+      "type": "National",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "98%",
+          "tuition": "EGP 80,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "95%",
+          "tuition": "EGP 60,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Galala University",
+      "location": "Galala",
+      "description": "A private university with state-of-the-art facilities and international partnerships.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=Galala+University",
+      "coordinates": [29.6253, 32.5522],
+      "type": "National",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 90,000 / year"
+        },
+        {
+          "name": "Architecture",
+          "totalScorePercent": "88%",
+          "tuition": "EGP 85,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "name": "New Mansoura University",
+      "location": "New Mansoura",
+      "description": "A modern national university offering a wide range of programs.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=New+Mansoura+University",
+      "coordinates": [31.0440, 31.3820],
+      "type": "National",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "97%",
+          "tuition": "EGP 85,000 / year"
+        },
+        {
+          "name": "Dentistry",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 90,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "name": "National University of Egypt",
+      "location": "Cairo",
+      "description": "A new national university with a vision to be a leader in technology.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=National+University+of+Egypt",
+      "coordinates": [30.0444, 31.2357],
+      "type": "National",
+      "colleges": [
+        {
+          "name": "Computer Science",
+          "totalScorePercent": "92%",
+          "tuition": "EGP 70,000 / year"
+        },
+        {
+          "name": "Artificial Intelligence",
+          "totalScorePercent": "93%",
+          "tuition": "EGP 75,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Nile University",
+      "location": "Sheikh Zayed City",
+      "description": "A private non-profit research university focusing on technology and business.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=Nile+University",
+      "coordinates": [30.0163, 30.9324],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "91%",
+          "tuition": "EGP 130,000 / year"
+        },
+        {
+          "name": "Business Administration",
+          "totalScorePercent": "86%",
+          "tuition": "EGP 110,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Misr International University (MIU)",
+      "location": "Obour City",
+      "description": "A private university offering diverse programs and an international environment.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=MIU",
+      "coordinates": [30.2227, 31.3842],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Dentistry",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 150,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "92%",
+          "tuition": "EGP 130,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Modern Sciences and Arts University (MSA)",
+      "location": "6th of October City",
+      "description": "Known for its collaboration with British universities.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=MSA",
+      "coordinates": [29.9723, 30.9632],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "89%",
+          "tuition": "EGP 115,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "91%",
+          "tuition": "EGP 125,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "name": "October University for Modern Sciences and Arts (MUST)",
+      "location": "6th of October City",
+      "description": "A large private university offering a broad spectrum of programs.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=MUST",
+      "coordinates": [29.9824, 30.9691],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 180,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 160,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Misr University for Science & Technology (MUST)",
+      "location": "6th of October City",
+      "description": "A large private university with a wide range of faculties and facilities.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=MUST",
+      "coordinates": [29.9824, 30.9691],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 180,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 160,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Pharos University in Alexandria",
+      "location": "Alexandria",
+      "description": "A private university with a strong focus on practical and applied education.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=Pharos+University",
+      "coordinates": [31.2185, 29.9238],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "92%",
+          "tuition": "EGP 105,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "88%",
+          "tuition": "EGP 85,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "name": "Sina University",
+      "location": "El Arish",
+      "description": "A private university in Sinai, focusing on developing the region.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=Sina+University",
+      "coordinates": [31.1340, 33.8037],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Dentistry",
+          "totalScorePercent": "93%",
+          "tuition": "EGP 130,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 110,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Ahram Canadian University (ACU)",
+      "location": "6th of October City",
+      "description": "A private university with strong Canadian partnerships.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=ACU",
+      "coordinates": [29.9806, 30.9678],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 105,000 / year"
+        },
+        {
+          "name": "Business Administration",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 70,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Delta University for Science and Technology",
+      "location": "Mansoura",
+      "description": "A private university located in the Nile Delta.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=Delta+University",
+      "coordinates": [31.0503, 31.3855],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "95%",
+          "tuition": "EGP 170,000 / year"
+        },
+        {
+          "name": "Dentistry",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 160,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "name": "Heliopolis University for Sustainable Development",
+      "location": "El Sherouk",
+      "description": "A private university with a unique focus on sustainability.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=Heliopolis+University",
+      "coordinates": [30.1415, 31.5990],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "87%",
+          "tuition": "EGP 90,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "89%",
+          "tuition": "EGP 100,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Egyptian Russian University (ERU)",
+      "location": "Badr City",
+      "description": "A private university with strong ties to Russian universities.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=ERU",
+      "coordinates": [30.1348, 31.7456],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "88%",
+          "tuition": "EGP 80,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 95,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "name": "Thebes Higher Institute",
+      "location": "Maadi",
+      "description": "A private higher education institution.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=Thebes+Institute",
+      "coordinates": [29.9670, 31.2589],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 40,000 / year"
+        },
+        {
+          "name": "Information Systems",
+          "totalScorePercent": "75%",
+          "tuition": "EGP 35,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Higher Institute of Engineering and Technology",
+      "location": "New Damietta",
+      "description": "Focuses on technical and engineering education.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=HIET",
+      "coordinates": [31.4253, 31.8105],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 50,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "name": "Canadian International College (CIC)",
+      "location": "Sheikh Zayed City",
+      "description": "Offers Canadian-style education in Egypt.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=CIC",
+      "coordinates": [29.9880, 30.9324],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Business Administration",
+          "totalScorePercent": "82%",
+          "tuition": "EGP 90,000 / year"
+        },
+        {
+          "name": "Mass Communication",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 85,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "name": "Arab Academy for Science, Technology & Maritime Transport (AASTMT)",
+      "location": "Alexandria",
+      "description": "A regional institution specializing in technology and transport.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=AASTMT",
+      "coordinates": [31.2001, 29.9187],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 110,000 / year"
+        },
+        {
+          "name": "Maritime Transport",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 95,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "name": "Beni-Suef University",
+      "location": "Beni-Suef",
+      "description": "A public university in Middle Egypt.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=Beni-Suef+University",
+      "coordinates": [29.0768, 31.0963],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 9,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 8,500 / year"
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "name": "Damietta University",
+      "location": "Damietta",
+      "description": "A public university on the Mediterranean coast.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=Damietta+University",
+      "coordinates": [31.4168, 31.8153],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 10,000 / year"
+        },
+        {
+          "name": "Commerce",
+          "totalScorePercent": "78%",
+          "tuition": "EGP 4,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "name": "Matrouh University",
+      "location": "Matrouh",
+      "description": "A public university in the far northwest of Egypt.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=Matrouh+University",
+      "coordinates": [31.3508, 27.2346],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Agriculture",
+          "totalScorePercent": "75%",
+          "tuition": "EGP 5,000 / year"
+        },
+        {
+          "name": "Education",
+          "totalScorePercent": "70%",
+          "tuition": "EGP 3,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "name": "Suez University of Technology",
+      "location": "Suez",
+      "description": "A public university focused on technical education.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=Suez+University+of+Technology",
+      "coordinates": [29.9880, 32.5350],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Industrial Technology",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 7,000 / year"
+        },
+        {
+          "name": "Information Technology",
+          "totalScorePercent": "82%",
+          "tuition": "EGP 6,500 / year"
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "name": "El Alamein International University",
+      "location": "El Alamein",
+      "description": "A private university with a strong international focus on the North Coast.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=El+Alamein+University",
+      "coordinates": [30.8242, 28.9405],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 110,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "92%",
+          "tuition": "EGP 120,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "name": "New Giza University",
+      "location": "New Giza",
+      "description": "A private university offering high-quality, modern programs.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=New+Giza+University",
+      "coordinates": [29.9850, 30.9850],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "97%",
+          "tuition": "EGP 200,000 / year"
+        },
+        {
+          "name": "Dentistry",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 180,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "name": "Egyptian E-Learning University",
+      "location": "Cairo",
+      "description": "Specializes in online and distance education.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=E-Learning+University",
+      "coordinates": [30.0444, 31.2357],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Commerce",
+          "totalScorePercent": "75%",
+          "tuition": "EGP 3,000 / year"
+        },
+        {
+          "name": "Computer Science",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 4,500 / year"
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "name": "Al-Azhar University",
+      "location": "Cairo",
+      "description": "The world's oldest degree-granting university, focusing on Islamic studies.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=Al-Azhar+University",
+      "coordinates": [30.0450, 31.2612],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Islamic Theology",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 2,000 / year"
+        },
+        {
+          "name": "Medicine",
+          "totalScorePercent": "95%",
+          "tuition": "EGP 8,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "name": "October 6 University (O6U)",
+      "location": "6th of October City",
+      "description": "A private university with a wide range of faculties.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=O6U",
+      "coordinates": [29.9818, 30.9575],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "95%",
+          "tuition": "EGP 160,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "88%",
+          "tuition": "EGP 105,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "name": "Shorouk Academy",
+      "location": "El Sherouk",
+      "description": "A private academy with various engineering and business departments.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=Shorouk+Academy",
+      "coordinates": [30.1345, 31.5992],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 50,000 / year"
+        },
+        {
+          "name": "Business Administration",
+          "totalScorePercent": "78%",
+          "tuition": "EGP 35,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "name": "Higher Institute of Architectural Engineering",
+      "location": "Alexandria",
+      "description": "Specializes in architectural and civil engineering.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=HIAE",
+      "coordinates": [31.2185, 29.9238],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Architectural Engineering",
+          "totalScorePercent": "87%",
+          "tuition": "EGP 55,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "name": "Institute of Aviation Engineering and Technology (IAET)",
+      "location": "Giza",
+      "description": "Offers programs in aviation engineering.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=IAET",
+      "coordinates": [30.0275, 31.2096],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Aviation Engineering",
+          "totalScorePercent": "88%",
+          "tuition": "EGP 70,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "name": "Egyptian Academy for Engineering and Advanced Technology (EAEAT)",
+      "location": "Cairo",
+      "description": "A private institution for advanced engineering studies.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=EAEAT",
+      "coordinates": [30.0754, 31.2858],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "86%",
+          "tuition": "EGP 60,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "name": "Modern Academy for Engineering and Technology in Maadi",
+      "location": "Maadi",
+      "description": "Focuses on modern engineering and technology.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=Modern+Academy",
+      "coordinates": [29.9670, 31.2589],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "84%",
+          "tuition": "EGP 50,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "name": "Higher Institute of Engineering and Technology, New Cairo",
+      "location": "New Cairo",
+      "description": "Offers various engineering programs in a modern campus.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=HIET+New+Cairo",
+      "coordinates": [30.0125, 31.4429],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 55,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "name": "International Academy for Engineering & Media Science",
+      "location": "Giza",
+      "description": "A unique academy blending engineering and media.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=IAEMS",
+      "coordinates": [30.0275, 31.2096],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Media Science",
+          "totalScorePercent": "78%",
+          "tuition": "EGP 45,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 60,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "name": "Badr University in Cairo (BUC)",
+      "location": "Badr City",
+      "description": "A private university with a wide array of faculties.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=BUC",
+      "coordinates": [30.1348, 31.7456],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "92%",
+          "tuition": "EGP 110,000 / year"
+        },
+        {
+          "name": "Dentistry",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 140,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "name": "New Capital University (NCU)",
+      "location": "New Administrative Capital",
+      "description": "A brand-new university in Egypt's new capital city.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=NCU",
+      "coordinates": [30.0444, 31.2357],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "98%",
+          "tuition": "EGP 190,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "95%",
+          "tuition": "EGP 150,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "name": "Knowledge Hub Universities",
+      "location": "New Administrative Capital",
+      "description": "A collaboration of international universities in one campus.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=Knowledge+Hub",
+      "coordinates": [30.0444, 31.2357],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Business",
+          "totalScorePercent": "88%",
+          "tuition": "EGP 120,000 / year"
+        },
+        {
+          "name": "Computer Science",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 130,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "name": "The Knowledge City",
+      "location": "New Administrative Capital",
+      "description": "A large educational city with a focus on technology.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=Knowledge+City",
+      "coordinates": [30.0444, 31.2357],
+      "type": "National",
+      "colleges": [
+        {
+          "name": "Information Technology",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 70,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "92%",
+          "tuition": "EGP 75,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "name": "The Egyptian Japanese University (E-JUST)",
+      "location": "Borg El Arab",
+      "description": "A research-based university with Japanese partners.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=E-JUST",
+      "coordinates": [30.8876, 29.6200],
+      "type": "National",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "95%",
+          "tuition": "EGP 80,000 / year"
+        },
+        {
+          "name": "International Business",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 70,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "name": "Misr University of Technology and Science (MUST)",
+      "location": "6th of October City",
+      "description": "A private university with a wide range of academic programs.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=MUST",
+      "coordinates": [29.9824, 30.9691],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 180,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 160,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "name": "International Islamic University for Science and Technology",
+      "location": "Suez",
+      "description": "A private university with a focus on Islamic and scientific studies.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=IIUST",
+      "coordinates": [29.9880, 32.5350],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Islamic Studies",
+          "totalScorePercent": "75%",
+          "tuition": "EGP 25,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "88%",
+          "tuition": "EGP 70,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "name": "South Cairo Technical College",
+      "location": "Cairo",
+      "description": "A technical college providing vocational training.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=SCTC",
+      "coordinates": [30.0444, 31.2357],
+      "type": "Technical",
+      "colleges": [
+        {
+          "name": "Industrial Technology",
+          "totalScorePercent": "65%",
+          "tuition": "EGP 5,000 / year"
+        },
+        {
+          "name": "Electrical Engineering Technology",
+          "totalScorePercent": "68%",
+          "tuition": "EGP 6,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "name": "Higher Institute of Tourism and Hotels",
+      "location": "Giza",
+      "description": "Specializes in tourism and hotel management.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=HITH",
+      "coordinates": [30.0275, 31.2096],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Tourism and Hotels",
+          "totalScorePercent": "70%",
+          "tuition": "EGP 30,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "name": "International Academy of Engineering and Media Science (IAEMS)",
+      "location": "Giza",
+      "description": "A private academy offering programs in engineering and media science.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=IAEMS",
+      "coordinates": [30.0275, 31.2096],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Media Science",
+          "totalScorePercent": "78%",
+          "tuition": "EGP 45,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 60,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "name": "Arab Open University (AOU)",
+      "location": "Cairo",
+      "description": "A university providing open and distance learning.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=AOU",
+      "coordinates": [30.0444, 31.2357],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Business Studies",
+          "totalScorePercent": "70%",
+          "tuition": "EGP 25,000 / year"
+        },
+        {
+          "name": "Information Technology",
+          "totalScorePercent": "75%",
+          "tuition": "EGP 30,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "name": "Future Academy",
+      "location": "New Cairo",
+      "description": "A private academy with a focus on applied sciences.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=Future+Academy",
+      "coordinates": [30.0125, 31.4429],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Computer Science",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 40,000 / year"
+        },
+        {
+          "name": "Business Administration",
+          "totalScorePercent": "75%",
+          "tuition": "EGP 35,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "name": "Misr for Science and Technology University (MUST)",
+      "location": "6th of October City",
+      "description": "A leading private university with extensive facilities.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=MUST",
+      "coordinates": [29.9824, 30.9691],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 180,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 160,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "name": "Modern University for Technology and Information (MTI)",
+      "location": "Maadi",
+      "description": "A private university with a focus on technology and information.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=MTI",
+      "coordinates": [29.9670, 31.2589],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Computer Science",
+          "totalScorePercent": "82%",
+          "tuition": "EGP 50,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 60,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "name": "October High Institute for Engineering and Technology",
+      "location": "6th of October City",
+      "description": "Offers engineering programs.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=OHIET",
+      "coordinates": [29.9824, 30.9691],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 55,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "name": "The American College of Technology",
+      "location": "New Cairo",
+      "description": "A private college offering technical programs with an American curriculum.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=ACT",
+      "coordinates": [30.0125, 31.4429],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Business Information Systems",
+          "totalScorePercent": "75%",
+          "tuition": "EGP 40,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "name": "Thebes Academy",
+      "location": "Maadi",
+      "description": "A private academy for management and information systems.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=Thebes+Academy",
+      "coordinates": [29.9670, 31.2589],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Information Systems",
+          "totalScorePercent": "70%",
+          "tuition": "EGP 30,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "name": "October High Institute for Mass Communication",
+      "location": "6th of October City",
+      "description": "Specializes in mass communication and media studies.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=OHIMC",
+      "coordinates": [29.9824, 30.9691],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Mass Communication",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 45,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "name": "Higher Institute of Applied Arts",
+      "location": "6th of October City",
+      "description": "A specialized institute for applied arts.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=HIAA",
+      "coordinates": [29.9824, 30.9691],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Applied Arts",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 50,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "name": "Higher Institute of Engineering and Technology",
+      "location": "Helwan",
+      "description": "Offers various engineering programs in Helwan.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=HIET+Helwan",
+      "coordinates": [29.8450, 31.3323],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "84%",
+          "tuition": "EGP 50,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "name": "The American University in Cairo (AUC)",
+      "location": "New Cairo",
+      "description": "A prestigious private university with a liberal arts curriculum.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=AUC",
+      "coordinates": [29.9880, 31.4397],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Business",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 250,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "92%",
+          "tuition": "EGP 280,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "name": "Modern Academy in Maadi",
+      "location": "Maadi",
+      "description": "A private academy offering a variety of programs.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=Modern+Academy+Maadi",
+      "coordinates": [29.9670, 31.2589],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "84%",
+          "tuition": "EGP 50,000 / year"
+        },
+        {
+          "name": "Information Systems",
+          "totalScorePercent": "75%",
+          "tuition": "EGP 35,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "name": "Higher Institute of Specific Studies",
+      "location": "Giza",
+      "description": "Offers specialized technical programs.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=HISS",
+      "coordinates": [30.0275, 31.2096],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Applied Sciences",
+          "totalScorePercent": "78%",
+          "tuition": "EGP 40,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "name": "New Cairo Academy for Sciences and Arts",
+      "location": "New Cairo",
+      "description": "A private academy for science and arts.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=NCASA",
+      "coordinates": [30.0125, 31.4429],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Arts",
+          "totalScorePercent": "75%",
+          "tuition": "EGP 30,000 / year"
+        },
+        {
+          "name": "Science",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 40,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "name": "Arab Academy for Banking and Financial Sciences",
+      "location": "Cairo",
+      "description": "Specializes in banking and finance.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=AABFS",
+      "coordinates": [30.0444, 31.2357],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Banking and Finance",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 45,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "name": "Higher Institute of Computer Science and Technology",
+      "location": "Cairo",
+      "description": "Focuses on computer science and information technology.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=HICST",
+      "coordinates": [30.0754, 31.2858],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Computer Science",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 40,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 87,
+      "name": "International Academy for Science and Technology",
+      "location": "Suez",
+      "description": "A private academy for science and technology.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=IAST",
+      "coordinates": [29.9880, 32.5350],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 60,000 / year"
+        },
+        {
+          "name": "Computer Science",
+          "totalScorePercent": "82%",
+          "tuition": "EGP 50,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 88,
+      "name": "Misr University for Science and Technology (MUST)",
+      "location": "6th of October City",
+      "description": "A major private university in 6th of October City.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=MUST",
+      "coordinates": [29.9824, 30.9691],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 180,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 160,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 89,
+      "name": "Nile Academy",
+      "location": "Mansoura",
+      "description": "A private academy in the Nile Delta.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=Nile+Academy",
+      "coordinates": [31.0410, 31.3802],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "82%",
+          "tuition": "EGP 45,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 90,
+      "name": "The Egyptian Academy for Scientific Research and Technology",
+      "location": "Cairo",
+      "description": "A governmental institution for scientific research.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=EASRT",
+      "coordinates": [30.0444, 31.2357],
+      "type": "Public",
+      "colleges": [
+        {
+          "name": "Research Sciences",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 10,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 91,
+      "name": "Thebes Higher Institute for Modern Sciences",
+      "location": "Maadi",
+      "description": "A private institute with modern scientific programs.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=Thebes+Institute",
+      "coordinates": [29.9670, 31.2589],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Business Administration",
+          "totalScorePercent": "78%",
+          "tuition": "EGP 35,000 / year"
+        },
+        {
+          "name": "Information Technology",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 40,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "name": "Higher Institute of Specific Studies for Women",
+      "location": "Maadi",
+      "description": "A specialized institute for women.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=HISW",
+      "coordinates": [29.9670, 31.2589],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Applied Sciences",
+          "totalScorePercent": "75%",
+          "tuition": "EGP 35,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 93,
+      "name": "Helwan Academy",
+      "location": "Helwan",
+      "description": "A private academy for engineering and technology.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=Helwan+Academy",
+      "coordinates": [29.8450, 31.3323],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "83%",
+          "tuition": "EGP 48,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "name": "The Egyptian Academy for Advanced Technology",
+      "location": "Cairo",
+      "description": "A private academy with a focus on advanced technology.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=EAAAT",
+      "coordinates": [30.0754, 31.2858],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 60,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "name": "The American College",
+      "location": "Giza",
+      "description": "A private college offering various technical programs.",
+      "imageUrl": "https://placehold.co/400x200/DDA0DD/FFF?text=The+American+College",
+      "coordinates": [30.0275, 31.2096],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Business",
+          "totalScorePercent": "75%",
+          "tuition": "EGP 35,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "name": "The British International College",
+      "location": "Alexandria",
+      "description": "A private college with British partners.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=BIC",
+      "coordinates": [31.2001, 29.9187],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Business Administration",
+          "totalScorePercent": "82%",
+          "tuition": "EGP 90,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "name": "The Egyptian International University",
+      "location": "New Cairo",
+      "description": "A private international university.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=EIU",
+      "coordinates": [30.0125, 31.4429],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "90%",
+          "tuition": "EGP 105,000 / year"
+        },
+        {
+          "name": "Business",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 90,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "name": "The Higher Institute of Engineering",
+      "location": "6th of October City",
+      "description": "A specialized engineering institute.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=HIE",
+      "coordinates": [29.9824, 30.9691],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "86%",
+          "tuition": "EGP 58,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "name": "The Higher Institute of Technology",
+      "location": "Giza",
+      "description": "Focuses on modern technology.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=HIT",
+      "coordinates": [30.0275, 31.2096],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Information Technology",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 42,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "name": "The International Academy",
+      "location": "Cairo",
+      "description": "A private international academy.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=TIA",
+      "coordinates": [30.0444, 31.2357],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Business Administration",
+          "totalScorePercent": "80%",
+          "tuition": "EGP 45,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 101,
+      "name": "Misr University of Technology and Science (MUST)",
+      "location": "6th of October City",
+      "description": "A leading private university with extensive facilities.",
+      "imageUrl": "https://placehold.co/400x200/536878/FFF?text=MUST",
+      "coordinates": [29.9824, 30.9691],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Medicine",
+          "totalScorePercent": "96%",
+          "tuition": "EGP 180,000 / year"
+        },
+        {
+          "name": "Pharmacy",
+          "totalScorePercent": "94%",
+          "tuition": "EGP 160,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "name": "Modern University for Technology and Information (MTI)",
+      "location": "Maadi",
+      "description": "A private university with a focus on technology and information.",
+      "imageUrl": "https://placehold.co/400x200/A9A9A9/FFF?text=MTI",
+      "coordinates": [29.9670, 31.2589],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Computer Science",
+          "totalScorePercent": "82%",
+          "tuition": "EGP 50,000 / year"
+        },
+        {
+          "name": "Engineering",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 60,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "name": "October High Institute for Engineering and Technology",
+      "location": "6th of October City",
+      "description": "Offers engineering programs.",
+      "imageUrl": "https://placehold.co/400x200/B0C4DE/FFF?text=OHIET",
+      "coordinates": [29.9824, 30.9691],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Engineering",
+          "totalScorePercent": "85%",
+          "tuition": "EGP 55,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "name": "The American College of Technology",
+      "location": "New Cairo",
+      "description": "A private college offering technical programs with an American curriculum.",
+      "imageUrl": "https://placehold.co/400x200/87CEEB/FFF?text=ACT",
+      "coordinates": [30.0125, 31.4429],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Business Information Systems",
+          "totalScorePercent": "75%",
+          "tuition": "EGP 40,000 / year"
+        }
+      ]
+    },
+    {
+      "id": 105,
+      "name": "Thebes Academy",
+      "location": "Maadi",
+      "description": "A private academy for management and information systems.",
+      "imageUrl": "https://placehold.co/400x200/5F9EA0/FFF?text=Thebes+Academy",
+      "coordinates": [29.9670, 31.2589],
+      "type": "Private",
+      "colleges": [
+        {
+          "name": "Information Systems",
+          "totalScorePercent": "70%",
+          "tuition": "EGP 30,000 / year"
+        }
+      ]
+    }
+  ]
+}
